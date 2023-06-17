@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using Exiled.API.Interfaces;
+﻿using Exiled.API.Interfaces;
 using PlayerRoles;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ScpSwap.Configs
 {

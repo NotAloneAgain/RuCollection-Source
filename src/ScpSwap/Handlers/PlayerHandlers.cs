@@ -1,5 +1,5 @@
-﻿using Exiled.Events.EventArgs.Player;
-using Exiled.API.Enums;
+﻿using Exiled.API.Enums;
+using Exiled.Events.EventArgs.Player;
 using RuCollection.API.ScpSwap;
 
 namespace ScpSwap.Handlers

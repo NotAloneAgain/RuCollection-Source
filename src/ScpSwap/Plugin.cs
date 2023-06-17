@@ -1,6 +1,4 @@
 ﻿using Exiled.Events.Handlers;
-using HarmonyLib;
-using PluginAPI.Commands;
 using RemoteAdmin;
 using RuCollection.API.ScpSwap;
 using ScpSwap.Commands;

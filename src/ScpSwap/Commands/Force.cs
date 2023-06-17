@@ -1,11 +1,10 @@
 ﻿using CommandSystem;
-using PlayerRoles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Exiled.API.Enums;
 using Exiled.API.Features;
-using System.Threading.Tasks;
+using PlayerRoles;
 using RuCollection.API.ScpSwap;
+using System;
+using System.Linq;
 
 namespace ScpSwap.Commands
 {
@@ -32,7 +31,7 @@ namespace ScpSwap.Commands
 
             if (string.IsNullOrEmpty(number) || !ushort.TryParse(number, out ushort scp))
             {
-                response = "Использование .force [номер SCP]";
+                response = "Синтаксис команды: .force [Номер]";
                 return false;
             }
 
@@ -67,11 +66,11 @@ namespace ScpSwap.Commands
 
             if (Player.Get(role).Count() == Swap.Slots[role])
             {
-                response = "Все слоты за данный объект заняты..";
+                response = "Все слоты за данный объект заняты.";
                 return false;
             }
 
-            player.Role.Set(role, Exiled.API.Enums.SpawnReason.ForceClass, RoleSpawnFlags.All);
+            player.Role.Set(role, SpawnReason.ForceClass, RoleSpawnFlags.All);
 
             response = "Вы сменили свой SCP-Объект!";
 
