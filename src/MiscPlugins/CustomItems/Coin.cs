@@ -113,7 +113,7 @@ namespace MiscPlugins.CustomItems
                     {
                         if (!player.IsScp) return;
 
-                        Cassie.GlitchyMessage($"Внимание! Обнаружено нарушение условий содержаний {player.Role.Name}<b></b>.  <color=#ffffff00>h Attention all PERSONNEL jam_080_4 detected . CONTAINMENT breach of SCP {Regex.Replace(player.Role.Name.Replace("SCP-", ""), "(.)", "$1 ")}", 0.5f, 0.5f);
+                        Cassie.Message($"Внимание! Обнаружено нарушение условий содержаний {player.Role.Name}<b></b>.  <color=#ffffff00>h Attention all PERSONNEL jam_080_4 detected . CONTAINMENT breach of SCP {Regex.Replace(player.Role.Name.Replace("SCP-", ""), "(.)", "$1 ")}", false, false, true);
                     });
                 }
                 if (needTo == "speed")
@@ -233,9 +233,9 @@ namespace MiscPlugins.CustomItems
 
                     if(CustomRole.Get((uint)8).Check(ev.Player))
                     {
-                        //Pickup.CreateAndSpawn(ItemType.GrenadeHE, ev.Player.Position, Quaternion.Euler(Vector3.zero));
+                        Pickup.CreateAndSpawn(ItemType.GrenadeHE, ev.Player.Position, Quaternion.Euler(Vector3.zero));
 
-                        //return;
+                        return;
                     }
                     CustomRole.Get((uint)8).AddRole(ev.Player);
                 }

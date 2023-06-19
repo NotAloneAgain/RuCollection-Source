@@ -1,7 +1,10 @@
 ﻿using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.CustomRoles.API.Features;
+using Exiled.Events.EventArgs.Map;
 using Exiled.Events.EventArgs.Player;
+using HarmonyLib;
+using InventorySystem.Items.Firearms.Ammo;
 using MEC;
 using PlayerEvent = Exiled.Events.Handlers.Player;
 
@@ -17,6 +20,7 @@ namespace MiscPlugins.UnlimitedAmmo.Handlers
             PlayerEvent.Dying += OnDying;
             PlayerEvent.ReloadingWeapon += OnReloadWeapon;
             PlayerEvent.ChangingRole += OnChangingRole;
+            Exiled.Events.Handlers.Map.SpawningItem += OnSpawningItem;
         }
         public void UnsubscribeEvents()
         {
@@ -26,7 +30,14 @@ namespace MiscPlugins.UnlimitedAmmo.Handlers
             PlayerEvent.Dying -= OnDying;
             PlayerEvent.ReloadingWeapon -= OnReloadWeapon;
             PlayerEvent.ChangingRole -= OnChangingRole;
-
+            Exiled.Events.Handlers.Map.SpawningItem -= OnSpawningItem;
+        }
+        private void OnSpawningItem(SpawningItemEventArgs ev)
+        {
+            if(ev.Pickup.Base is AmmoPickup)
+            {
+                ev.IsAllowed = false;
+            }
         }
         private void OnChangingRole(ChangingRoleEventArgs ev)
         {
