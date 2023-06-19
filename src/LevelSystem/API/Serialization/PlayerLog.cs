@@ -1,7 +1,7 @@
 ﻿using System;
 using LiteDB;
 
-namespace Control.Handlers.Events.API.Serialization
+namespace LevelSystem.API.Serialization
 {
     [Serializable]
     public class PlayerLog

@@ -11,7 +11,7 @@
     using PlayerRoles;
     using CustomPlayerEffects;
     using Exiled.Permissions.Extensions;
-    using Control.Handlers.Events.API.Serialization;
+    using LevelSystem.API.Serialization;
 
     [CommandHandler(typeof(ClientCommandHandler))]
     public class leaderboard : ICommand

@@ -9,23 +9,22 @@ namespace MiscPlugins
 {
     public sealed class Plugin : Exiled.API.Features.Plugin<Config>
     {
-        private const string HarmonyId = "Ray-Grey.MiscPlugins";
+        private const string HarmonyId = "swd.MiscPlugins.Patches";
 
-        private EventHandlers _handlers;
+        private MiscPluginsHandler _handlers;
         private Harmony _harmony;
-
+        public static Plugin Singleton;
         public override string Name => "MiscPlugins";
-
-        public override string Prefix => "MiscPlugins";
-
-        public override string Author => ".grey#9120";
+        public override string Author => "swd && .grey#9120";
 
         public override Version Version => new(1, 0, 0);
 
         public override void OnEnabled()
         {
             _harmony = new(HarmonyId);
-            _handlers = new();
+            _handlers = new MiscPluginsHandler();
+
+            Singleton = this;
 
             _harmony.PatchAll(GetType().Assembly);
 
@@ -39,13 +38,9 @@ namespace MiscPlugins
             _handlers = null;
             _harmony = null;
 
+            Singleton = null;
+
             base.OnDisabled();
         }
-
-        public override void OnReloaded() { }
-
-        public override void OnRegisteringCommands() { }
-
-        public override void OnUnregisteringCommands() { }
     }
 }

@@ -33,9 +33,10 @@ namespace LevelSystem.Handlers
         }
         public void OnJoined(VerifiedEventArgs ev)
         {
-            ev.Player.GetLog();
-            Timing.CallDelayed(0.2f, () =>
+            Timing.CallDelayed(0.3f, () =>
             {
+                ev.Player.GetLog();
+
                 API.API.UpdateBadge(ev.Player, ev.Player.Group?.BadgeText);
             });
         }
@@ -73,7 +74,7 @@ namespace LevelSystem.Handlers
         {
             if (!ev.IsAllowed) return;
 
-            if (/*CustomRole.Get((uint)1).Check(ev.Player ||*/ CustomRole.Get((uint)2).Check(ev.Player)) return;
+            if (CustomRole.Get((uint)2).Check(ev.Player)) return;
 
             if (!Plugin.Singleton.Config.EscapeXP.TryGetValue(ev.Player.Role, out int xp))
             {

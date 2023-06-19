@@ -1,7 +1,7 @@
 ﻿namespace LevelSystem.API;
 
 using System.Linq;
-using Control.Handlers.Events.API.Serialization;
+using LevelSystem.API.Serialization;
 using Exiled.API.Features;
 
 public static class API

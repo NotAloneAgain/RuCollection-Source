@@ -275,3 +275,10 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+src/RoundScenarious/RoundScenarious.csproj
+src/Scp035/Scp035.csproj
+src/RoundScenarious/RoundScenarious.csproj
+src/Scp035/Scp035.csproj
+src/RoundScenarious/RoundScenarious.csproj
+src/MiscPlugins/MiscPlugins.csproj
+*.csproj

@@ -20,10 +20,14 @@ namespace LevelSystem
         public LiteDatabase db;
         public override void OnEnabled()
         {
+            Singleton = this;
+
             _harmony = new(HarmonyId);
             _handlers = new EventHandlers();
 
-            db = new LiteDatabase(Path.Combine(Exiled.API.Features.Paths.Configs, @"Plugin/LimitDonator.db"));
+
+
+            db = new LiteDatabase(Path.Combine(Exiled.API.Features.Paths.Configs, @"Plugin/XPusers.db"));
 
             _harmony.PatchAll(GetType().Assembly);
 
@@ -36,6 +40,8 @@ namespace LevelSystem
 
             db.Dispose();
             db = null;
+
+            Singleton = null;
 
             _handlers = null;
             _harmony = null;
