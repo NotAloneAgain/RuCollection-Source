@@ -1,25 +1,8 @@
 ﻿using Exiled.API.Features;
-using Exiled.Events.EventArgs.Interfaces;
-using Exiled.Events.EventArgs.Server;
-using MEC;
-using MiscPlugins.Commands;
-using MiscPlugins.CustomItems;
-using Respawning;
 using System.Linq;
-using Exiled.API.Enums;
-using Exiled.API.Features;
 using Exiled.API.Features.Items;
-using Exiled.CustomRoles.API.Features;
-using Exiled.Events.EventArgs.Map;
 using Exiled.Events.EventArgs.Player;
-using InventorySystem.Items.Firearms.Ammo;
-using MEC;
 using PlayerEvent = Exiled.Events.Handlers.Player;
-using System.Collections.Generic;
-using System.Linq;
-using CustomPlayerEffects;
-using Interactables.Interobjects.DoorUtils;
-using Control.Extensions;
 using Utils.NonAllocLINQ;
 
 namespace MiscPlugins.RemoteKeycard.Handlers

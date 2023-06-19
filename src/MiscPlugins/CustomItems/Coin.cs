@@ -233,9 +233,9 @@ namespace MiscPlugins.CustomItems
 
                     if(CustomRole.Get((uint)8).Check(ev.Player))
                     {
-                        Pickup.CreateAndSpawn(ItemType.GrenadeHE, ev.Player.Position, Quaternion.Euler(Vector3.zero));
+                        //Pickup.CreateAndSpawn(ItemType.GrenadeHE, ev.Player.Position, Quaternion.Euler(Vector3.zero));
 
-                        return;
+                        //return;
                     }
                     CustomRole.Get((uint)8).AddRole(ev.Player);
                 }
