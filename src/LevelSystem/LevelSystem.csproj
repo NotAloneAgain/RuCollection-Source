@@ -26,6 +26,36 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Exiled.API, Version=7.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\swd\Desktop\d\Exiled.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.CreditTags">
+      <HintPath>C:\Users\swd\Desktop\d\Exiled.CreditTags.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.CustomItems, Version=7.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\swd\Desktop\d\Exiled.CustomItems.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.CustomRoles, Version=7.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\swd\Desktop\d\Exiled.CustomRoles.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.Events, Version=7.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\swd\Desktop\d\Exiled.Events.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.Loader, Version=7.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\swd\Desktop\d\Exiled.Loader.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.Permissions, Version=7.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\swd\Desktop\d\Exiled.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.Updater">
+      <HintPath>C:\Users\swd\Desktop\d\Exiled.Updater.dll</HintPath>
+    </Reference>
     <Reference Include="LiteDB, Version=5.0.16.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\YaCore\packages\Other\LiteDB.dll</HintPath>
@@ -37,13 +67,7 @@
     <Reference Include="UnityEngine.PhysicsModule" HintPath="$(UNITY_REFERENCES)\UnityEngine.PhysicsModule.dll" />
     <Reference Include="Assembly-CSharp-Publicized" HintPath="$(SL_REFERENCES)\Assembly-CSharp-Publicized.dll" />
     <Reference Include="Assembly-CSharp-firstpass" HintPath="$(SL_REFERENCES)\Assembly-CSharp-firstpass.dll" />
-    <Reference Include="Exiled.Permissions" HintPath="$(EXILED_REFERENCES)\Exiled.Permissions.dll" />
-    <Reference Include="Exiled.CustomRoles" HintPath="$(EXILED_REFERENCES)\Exiled.CustomRoles.dll" />
-    <Reference Include="Exiled.CustomItems" HintPath="$(EXILED_REFERENCES)\Exiled.CustomItems.dll" />
     <Reference Include="CommandSystem.Core" HintPath="$(SL_REFERENCES)\CommandSystem.Core.dll" />
-    <Reference Include="Exiled.Loader" HintPath="$(EXILED_REFERENCES)\Exiled.Loader.dll" />
-    <Reference Include="Exiled.Events" HintPath="$(EXILED_REFERENCES)\Exiled.Events.dll" />
-    <Reference Include="Exiled.API" HintPath="$(EXILED_REFERENCES)\Exiled.API.dll" />
     <Reference Include="NorthwoodLib" HintPath="$(SL_REFERENCES)\NorthwoodLib.dll" />
     <Reference Include="YamlDotNet" HintPath="$(SL_REFERENCES)\YamlDotNet.dll" />
     <Reference Include="0Harmony" HintPath="$(EXILED_REFERENCES)\0Harmony.dll" />

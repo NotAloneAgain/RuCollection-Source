@@ -21,7 +21,7 @@ namespace MiscPlugins.CassieDestroyed.Handlers
             Exiled.Events.Handlers.Map.AnnouncingScpTermination += OnAnnouncingScpTermination;
             Exiled.Events.Handlers.Map.AnnouncingNtfEntrance += OnAnnouncingNtfEntrance;
         }
-        ~EventHandlers()
+        public void UnsubscribeEvents()
         {
             Exiled.Events.Handlers.Server.RespawningTeam -= OnRespawningTeam;
             Exiled.Events.Handlers.Map.AnnouncingScpTermination -= OnAnnouncingScpTermination;

@@ -25,9 +25,9 @@ namespace LevelSystem
             _harmony = new(HarmonyId);
             _handlers = new EventHandlers();
 
+            if (!Directory.Exists(Path.Combine(Exiled.API.Features.Paths.Configs, @"LevelSystem"))) Directory.CreateDirectory(Path.Combine(Exiled.API.Features.Paths.Configs, @"LevelSystem"));
 
-
-            db = new LiteDatabase(Path.Combine(Exiled.API.Features.Paths.Configs, @"Plugin/XPusers.db"));
+            db = new LiteDatabase(Path.Combine(Exiled.API.Features.Paths.Configs, @"LevelSystem/XPusers.db"));
 
             _harmony.PatchAll(GetType().Assembly);
 
@@ -43,6 +43,7 @@ namespace LevelSystem
 
             Singleton = null;
 
+            _handlers.UnsubscribeEvents();
             _handlers = null;
             _harmony = null;
 

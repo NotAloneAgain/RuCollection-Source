@@ -1,4 +1,6 @@
-﻿using HarmonyLib;
+﻿using Exiled.CustomItems.API.Features;
+using Exiled.CustomRoles.API.Features;
+using HarmonyLib;
 using MiscPlugins.Configs;
 using MiscPlugins.Handlers;
 using PluginAPI.Core.Attributes;
@@ -21,10 +23,13 @@ namespace MiscPlugins
 
         public override void OnEnabled()
         {
+            Singleton = this;
+
+            CustomItem.RegisterItems();
+            CustomRole.RegisterRoles(false, null, true, Assembly);
+
             _harmony = new(HarmonyId);
             _handlers = new MiscPluginsHandler();
-
-            Singleton = this;
 
             _harmony.PatchAll(GetType().Assembly);
 

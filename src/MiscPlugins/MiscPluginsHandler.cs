@@ -31,11 +31,18 @@ namespace MiscPlugins.Handlers
             SCP500RHandler = new SCP500R.Handlers.EventHandlers();
             UnlimitedAmmoHandler = new UnlimitedAmmo.Handlers.EventHandlers();
         }
-        ~MiscPluginsHandler()
+        public void Dispose()
         {
+            CassieDestroyedHandler.UnsubscribeEvents();
             CassieDestroyedHandler = null;
+
+            RemoteKeycardHandler.UnsubscribeEvents();
             RemoteKeycardHandler = null;
+
+            SCP500RHandler.UnsubscribeEvents();
             SCP500RHandler = null;
+
+            UnlimitedAmmoHandler.UnsubscribeEvents();
             UnlimitedAmmoHandler = null;
         }
 private bool isWarheadCassie1Minute = false;
@@ -49,13 +56,13 @@ private bool isLightDecontStart = false;
             //Timing.KillCoroutines(WarheadMusic.ChangeColorsCoroutineHandle);
             //Timing.KillCoroutines(WarheadDecontamition.DecontamitionSequnse);
 
-            if (Plugin.Singleton.Config.FullRoundRestart)
+            if (true)//(Plugin.Singleton.Config.FullRoundRestart)
             {
                 Log.Info("Setting NextRoundAction to full restart.");
                 ServerStatic.StopNextRound = ServerStatic.NextRoundAction.Restart;
             }
 
-            if (Plugin.Singleton.Config.RoomLootSpawn)
+            if (true)//(Plugin.Singleton.Config.RoomLootSpawn)
             {
                 Log.Info("Spawning loot in rooms..");
 

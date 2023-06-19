@@ -14,7 +14,7 @@ namespace MiscPlugins.SCP500R.Handlers
         {
             Exiled.Events.Handlers.Player.Left += OnLeft;
         }
-        ~EventHandlers()
+        public void UnsubscribeEvents()
         {
             Exiled.Events.Handlers.Player.Left -= OnLeft;
         }

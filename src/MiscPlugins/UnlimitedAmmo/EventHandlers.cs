@@ -9,7 +9,6 @@ namespace MiscPlugins.UnlimitedAmmo.Handlers
 {
     internal sealed class EventHandlers
     {
-
         public EventHandlers()
         {
             PlayerEvent.Handcuffing += OnHandcuffing;
@@ -19,7 +18,7 @@ namespace MiscPlugins.UnlimitedAmmo.Handlers
             PlayerEvent.ReloadingWeapon += OnReloadWeapon;
             PlayerEvent.ChangingRole += OnChangingRole;
         }
-        ~EventHandlers()
+        public void UnsubscribeEvents()
         {
             PlayerEvent.Handcuffing -= OnHandcuffing;
             PlayerEvent.RemovingHandcuffs -= OnRemovingHandcuffs;
@@ -30,7 +29,7 @@ namespace MiscPlugins.UnlimitedAmmo.Handlers
         }
         private void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            if (CustomRole.Get((uint)2).Check(ev.Player)) return;
+            //if (CustomRole.Get((uint)2).Check(ev.Player)) return;
             if (ev.Player.IsScp) return;
 
             ev.Player.SetAmmo(AmmoType.Nato9, 0);
@@ -51,7 +50,7 @@ namespace MiscPlugins.UnlimitedAmmo.Handlers
         }
         private void OnReloadWeapon(ReloadingWeaponEventArgs ev)
         {
-            if (CustomRole.Get((uint)2).Check(ev.Player)) return;
+            //if (CustomRole.Get((uint)2).Check(ev.Player)) return;
 
             Timing.CallDelayed(0.1f, () =>
             {

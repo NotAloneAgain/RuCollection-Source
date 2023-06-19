@@ -14,6 +14,7 @@ using PlayerRoles;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace MiscPlugins.CustomItems
@@ -187,7 +188,27 @@ namespace MiscPlugins.CustomItems
 
                     Map.Broadcast(3, $"{ev.Player.Nickname} запустил конфетную вечеринку..");
 
-                    Timing.RunCoroutine(EveryoneCandy());
+                    Task.Run(async () =>
+                    {
+                        int candy = 0;
+                        while (candy <= 15)
+                        {
+                            foreach (Player pl in Player.List.Where(x => x.IsAlive && !x.IsScp))
+                            {
+                                if (CustomRole.Get((uint)2).Check(pl)) continue;
+
+                                pl.TryAddCandy(_candyID.RandomItem());
+
+                                Scp330 bag_candy = (Scp330)Item.Create(ItemType.SCP330);
+                                CandyKindID _candyId = _candyID.RandomItem();
+                                bag_candy.AddCandy(_candyId);
+                                Pickup pickup = bag_candy.CreatePickup(pl.Position);
+                            }
+
+                            candy++;
+                            await Task.Delay(1000);
+                        }
+                    });
                 }
                 if (needTo == "flash")
                 {
@@ -274,28 +295,6 @@ namespace MiscPlugins.CustomItems
             Exiled.Events.Handlers.Player.DroppingItem -= OnDroppingItem;
 
             base.UnsubscribeEvents();
-        }
-
-        public static IEnumerator<float> EveryoneCandy()
-        {
-            int candy = 0;
-            while (candy <= 15)
-            {
-                foreach (Player pl in Player.List.Where(x => x.IsAlive && !x.IsScp))
-                {
-                    if (CustomRole.Get((uint)2).Check(pl)) continue;
-
-                    pl.TryAddCandy(_candyID.RandomItem());
-
-                    Scp330 bag_candy = (Scp330)Item.Create(ItemType.SCP330);
-                    CandyKindID _candyId = _candyID.RandomItem();
-                    bag_candy.AddCandy(_candyId);
-                    Pickup pickup = bag_candy.CreatePickup(pl.Position);
-                }
-
-                candy++;
-                yield return Timing.WaitForSeconds(1.5f);
-            }
         }
     }
 }

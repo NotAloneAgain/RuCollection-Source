@@ -23,7 +23,7 @@ namespace LevelSystem.Handlers
             PlayerEvent.Escaping += OnEscape;
             ServerEvent.ReloadedRA += ReloadedRA;
         }
-        ~EventHandlers()
+        public void UnsubscribeEvents()
         {
             PlayerEvent.Verified -= OnJoined;
             PlayerEvent.Dying -= OnKill;
