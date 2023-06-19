@@ -74,7 +74,7 @@ namespace LevelSystem.Handlers
         {
             if (!ev.IsAllowed) return;
 
-            if (CustomRole.Get((uint)2).Check(ev.Player)) return;
+            //if (CustomRole.Get((uint)2).Check(ev.Player)) return;
 
             if (!Plugin.Singleton.Config.EscapeXP.TryGetValue(ev.Player.Role, out int xp))
             {

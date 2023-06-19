@@ -26,11 +26,13 @@ namespace MiscPlugins.UnlimitedAmmo.Handlers
             PlayerEvent.Dying -= OnDying;
             PlayerEvent.ReloadingWeapon -= OnReloadWeapon;
             PlayerEvent.ChangingRole -= OnChangingRole;
+
         }
         private void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            //if (CustomRole.Get((uint)2).Check(ev.Player)) return;
             if (ev.Player.IsScp) return;
+
+            //if (CustomRole.Get((uint)2).Check(ev.Player)) return;
 
             ev.Player.SetAmmo(AmmoType.Nato9, 0);
             ev.Player.SetAmmo(AmmoType.Ammo44Cal, 0);
@@ -52,6 +54,8 @@ namespace MiscPlugins.UnlimitedAmmo.Handlers
         {
             //if (CustomRole.Get((uint)2).Check(ev.Player)) return;
 
+            if (ev.Player.IsScp) return;
+
             Timing.CallDelayed(0.1f, () =>
             {
                 ev.Player.SetAmmo(AmmoType.Nato9, 999);
@@ -66,6 +70,7 @@ namespace MiscPlugins.UnlimitedAmmo.Handlers
         {
             if (ev.Player == null) return;
 
+            if (ev.Player.IsScp) return;
 
             ev.Player.SetAmmo(AmmoType.Nato9, 0);
             ev.Player.SetAmmo(AmmoType.Ammo44Cal, 0);
@@ -75,6 +80,8 @@ namespace MiscPlugins.UnlimitedAmmo.Handlers
         }
         public void OnHandcuffing(HandcuffingEventArgs ev)
         {
+            if (ev.Player.IsScp) return;
+
             ev.Target.SetAmmo(AmmoType.Nato9, 0);
             ev.Target.SetAmmo(AmmoType.Ammo44Cal, 0);
             ev.Target.SetAmmo(AmmoType.Nato762, 0);
@@ -83,6 +90,8 @@ namespace MiscPlugins.UnlimitedAmmo.Handlers
         }
         private void OnRemovingHandcuffs(RemovingHandcuffsEventArgs ev)
         {
+            if (ev.Player.IsScp) return;
+
             Timing.CallDelayed(0.1f, () =>
             {
                 ev.Player.SetAmmo(AmmoType.Nato9, 999);
