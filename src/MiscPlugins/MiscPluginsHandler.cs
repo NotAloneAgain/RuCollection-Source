@@ -30,6 +30,11 @@ namespace MiscPlugins.Handlers
             RemoteKeycardHandler = new RemoteKeycard.Handlers.EventHandlers();
             SCP500RHandler = new SCP500R.Handlers.EventHandlers();
             UnlimitedAmmoHandler = new UnlimitedAmmo.Handlers.EventHandlers();
+
+            Exiled.Events.Handlers.Server.RoundEnded += OnRoundEnded;
+            Exiled.Events.Handlers.Server.WaitingForPlayers += OnWaitingForPlayers;
+            Exiled.Events.Handlers.Server.EndingRound += OnEndingRound;
+
         }
         public void Dispose()
         {
@@ -44,6 +49,10 @@ namespace MiscPlugins.Handlers
 
             UnlimitedAmmoHandler.UnsubscribeEvents();
             UnlimitedAmmoHandler = null;
+
+            Exiled.Events.Handlers.Server.RoundEnded -= OnRoundEnded;
+            Exiled.Events.Handlers.Server.WaitingForPlayers -= OnWaitingForPlayers;
+            Exiled.Events.Handlers.Server.EndingRound -= OnEndingRound;
         }
 private bool isWarheadCassie1Minute = false;
 private bool isWarheadStart = false;
@@ -56,23 +65,28 @@ private bool isLightDecontStart = false;
             //Timing.KillCoroutines(WarheadMusic.ChangeColorsCoroutineHandle);
             //Timing.KillCoroutines(WarheadDecontamition.DecontamitionSequnse);
 
-            if (true)//(Plugin.Singleton.Config.FullRoundRestart)
+            if (Plugin.Singleton.Config.FullRoundRestart)
             {
                 Log.Info("Setting NextRoundAction to full restart.");
                 ServerStatic.StopNextRound = ServerStatic.NextRoundAction.Restart;
             }
 
-            if (true)//(Plugin.Singleton.Config.RoomLootSpawn)
+            if (Plugin.Singleton.Config.RoomLootSpawn)
             {
-                Log.Info("Spawning loot in rooms..");
-
-                foreach (Door door in Door.List.Where(x => x.Type == Exiled.API.Enums.DoorType.LczArmory || x.Type == Exiled.API.Enums.DoorType.HczArmory))
+                Timing.CallDelayed(5f, () =>
                 {
-                    door.IsOpen = true;
+                    Log.Info("Spawning loot in rooms..");
 
-                    door.IsOpen = false;
-                }
-            }
+                    foreach (Door door in Door.List.Where(x => x.Type == Exiled.API.Enums.DoorType.LczArmory || x.Type == Exiled.API.Enums.DoorType.HczArmory))
+                    {
+                        door.IsOpen = true;
+                        Timing.CallDelayed(0.1f, () =>
+                        {
+                            door.IsOpen = false;
+                        });
+                    }
+                });
+            };
 
             Round.IsLobbyLocked = false;
             Res.DiedWithSCP500R.Clear();
