@@ -1,9 +1,11 @@
 ﻿using CommandSystem;
 using Exiled.API.Enums;
 using Exiled.API.Features;
+using MEC;
 using PlayerRoles;
 using RuCollection.API.ScpSwap;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ScpSwap.Commands
@@ -11,6 +13,26 @@ namespace ScpSwap.Commands
     [CommandHandler(typeof(ClientCommandHandler))]
     internal sealed class Force : ICommand
     {
+        private readonly bool _prevent;
+        private Dictionary<Player, bool> _forced;
+
+        internal Force(bool prevent)
+        {
+            _prevent = prevent;
+
+            if (_prevent)
+            {
+                _forced = new(8);
+            }
+        }
+
+        ~Force()
+        {
+            _forced.Clear();
+
+            _forced = null;
+        }
+
         public string Command { get; } = "force";
 
         public string[] Aliases { get; } = Array.Empty<string>();
@@ -23,7 +45,7 @@ namespace ScpSwap.Commands
 
             if (arguments.Count < 1)
             {
-                response = "Использование .force [номер SCP]";
+                response = "Синтаксис команды: .force [Номер]";
                 return false;
             }
 
@@ -37,13 +59,19 @@ namespace ScpSwap.Commands
 
             if (Round.ElapsedTime.TotalSeconds > Swap.SwapDuration)
             {
-                response = $"Прошло более {Swap.SwapDuration} секунд после начала раунда..";
+                response = $"Прошло более {Swap.SwapDuration} секунд после начала раунда.";
                 return false;
             }
 
             if (!Swap.AllowedScps.Contains(player.Role))
             {
                 response = "Вы не подходите требованиям команды.";
+                return false;
+            }
+
+            if (_prevent && _forced.TryGetValue(player, out bool forced) && forced)
+            {
+                response = "Сменить роль можно лишь один раз.";
                 return false;
             }
 
@@ -73,6 +101,13 @@ namespace ScpSwap.Commands
             player.Role.Set(role, SpawnReason.ForceClass, RoleSpawnFlags.All);
 
             response = "Вы сменили свой SCP-Объект!";
+
+            _forced.Add(player, true);
+
+            Timing.CallDelayed((float)(Swap.SwapDuration - Round.ElapsedTime.TotalSeconds), delegate
+            {
+                _forced.Remove(player);
+            });
 
             player.SendConsoleMessage($"Желаем удачной игры за SCP-{role.ToString().Substring(3)}", "yellow");
 

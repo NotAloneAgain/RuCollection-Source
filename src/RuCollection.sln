@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiscPlugins", "MiscPlugins\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LevelSystem", "LevelSystem\LevelSystem.csproj", "{F31C6470-63AF-418C-9636-0B3830A5DABB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuCollection.API", "RuCollection.API\RuCollection.API.csproj", "{D1F73C4E-2AD4-4EC9-AC25-CBA6290E711F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -39,6 +41,10 @@ Global
 		{F31C6470-63AF-418C-9636-0B3830A5DABB}.Debug|x64.Build.0 = Debug|x64
 		{F31C6470-63AF-418C-9636-0B3830A5DABB}.Production|x64.ActiveCfg = Production|x64
 		{F31C6470-63AF-418C-9636-0B3830A5DABB}.Production|x64.Build.0 = Production|x64
+		{D1F73C4E-2AD4-4EC9-AC25-CBA6290E711F}.Debug|x64.ActiveCfg = Debug|x64
+		{D1F73C4E-2AD4-4EC9-AC25-CBA6290E711F}.Debug|x64.Build.0 = Debug|x64
+		{D1F73C4E-2AD4-4EC9-AC25-CBA6290E711F}.Production|x64.ActiveCfg = Production|x64
+		{D1F73C4E-2AD4-4EC9-AC25-CBA6290E711F}.Production|x64.Build.0 = Production|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

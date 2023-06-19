@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyName>RuCollection.API</AssemblyName>
-    <RootNamespace>RuCollection.API</RootNamespace>
-    <ProjectGuid>{D1F73C4E-2AD4-4EC9-AC25-CBA6290E711F}</ProjectGuid>
+    <AssemblyName>MiscPlugins</AssemblyName>
+    <RootNamespace>MiscPlugins</RootNamespace>
+    <ProjectGuid>{D9E12874-168B-40ED-A0F4-069DD8BE8DE9}</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +31,7 @@
     <Reference Include="Assembly-CSharp-Publicized" HintPath="$(SL_REFERENCES)\Assembly-CSharp-Publicized.dll" />
     <Reference Include="Assembly-CSharp-firstpass" HintPath="$(SL_REFERENCES)\Assembly-CSharp-firstpass.dll" />
     <Reference Include="UnityEngine.AudioModule" HintPath="$(UNITY_REFERENCES)\UnityEngine.AudioModule.dll" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(UNITY_REFERENCES)\UnityEngine.CoreModule.dll" />
     <Reference Include="Exiled.Permissions" HintPath="$(EXILED_REFERENCES)\Exiled.Permissions.dll" />
     <Reference Include="Exiled.CustomRoles" HintPath="$(EXILED_REFERENCES)\Exiled.CustomRoles.dll" />
     <Reference Include="Exiled.CustomItems" HintPath="$(EXILED_REFERENCES)\Exiled.CustomItems.dll" />
@@ -48,14 +49,12 @@
     <Reference Include="Caress" HintPath="$(SL_REFERENCES)\Caress.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configs\Config.cs" />
+    <Compile Include="Handlers\PlayerHandlers.cs" />
+    <Compile Include="Patches\InfinityAmmoTranspiler.cs" />
+    <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScpSwap\Swap.cs" />
-    <Compile Include="Subclasses\Single\Scp181.cs" />
-    <Compile Include="Subclasses\Single\Scp343.cs" />
-    <Compile Include="Subclasses\SubclassBase.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Subclasses\Group\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -51,7 +51,7 @@ namespace ScpSwap
 
         public override void OnRegisteringCommands()
         {
-            _command = new ();
+            _command = new (Config.PreventMultipleSwaps);
 
             QueryProcessor.DotCommandHandler.RegisterCommand(_command);
         }

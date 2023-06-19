@@ -1,4 +1,5 @@
 ﻿using Exiled.API.Enums;
+using Exiled.API.Extensions;
 using Exiled.Events.EventArgs.Player;
 using RuCollection.API.ScpSwap;
 
@@ -17,10 +18,12 @@ namespace ScpSwap.Handlers
 
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            if (ev.Reason == SpawnReason.RoundStart)
+            if (ev.Reason != SpawnReason.RoundStart || ev.NewRole.GetTeam() != PlayerRoles.Team.SCPs)
             {
-                ev.Player.ShowHint(string.Format(_text, Swap.SwapDuration), _duration);
+                return;
             }
+
+            ev.Player.ShowHint(string.Format(_text, Swap.SwapDuration), _duration);
         }
     }
 }

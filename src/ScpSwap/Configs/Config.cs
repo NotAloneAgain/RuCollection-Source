@@ -2,6 +2,7 @@
 using PlayerRoles;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Exiled.API.Features;
 
 namespace ScpSwap.Configs
 {
@@ -13,9 +14,12 @@ namespace ScpSwap.Configs
         [Description("Включен ли режим отладки?")]
         public bool Debug { get; set; } = false;
 
+        [Description("Предотвращать ли множественный свап?")]
+        public bool PreventMultipleSwaps { get; set; } = true;
+
         [Description("Текст подсказки с информацией по плагину.")]
-        public string InfoText { get; set; } = "<line-height=95%><voffset=-16em><color=FFCF48>Ты можешь сменить свой класс с помощью команды <b>.force</b>." +
-            "\nТы можешь сделать это в течение {0} секунд</color></voffset>";
+        public string InfoText { get; set; } = "<line-height=95%><size=95%><voffset=-20em><color=#E32636>Ты можешь сменить свой класс с помощью команды <b>.force</b>." +
+            "\nНа это у тебя есть <b>{0}</b> секунд.</color></size></voffset>";
 
         [Description("Длительность подсказки.")]
         public float InfoDuration { get; set; } = 20;
@@ -24,7 +28,7 @@ namespace ScpSwap.Configs
         public ushort SwapDuration { get; set; } = 60;
 
         [Description("SCP которым разрешено менять роль.")]
-        public static List<RoleTypeId> AllowedScps { get; set; } = new(8)
+        public List<RoleTypeId> AllowedScps { get; set; } = new(8)
         {
             RoleTypeId.Scp096,
             RoleTypeId.Scp049,
@@ -35,7 +39,7 @@ namespace ScpSwap.Configs
         };
 
         [Description("Количество слотов за данного SCP.")]
-        public static Dictionary<RoleTypeId, int> Slots { get; set; } = new(8)
+        public Dictionary<RoleTypeId, int> Slots { get; set; } = new(8)
         {
             { RoleTypeId.Scp096, 1 },
             { RoleTypeId.Scp049, 2 },
