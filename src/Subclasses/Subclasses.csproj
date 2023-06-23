@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyName>RuCollection.API</AssemblyName>
-    <RootNamespace>RuCollection.API</RootNamespace>
-    <ProjectGuid>{D1F73C4E-2AD4-4EC9-AC25-CBA6290E711F}</ProjectGuid>
+    <AssemblyName>Subclasses</AssemblyName>
+    <RootNamespace>Subclasses</RootNamespace>
+    <ProjectGuid>{EF3198D3-3E94-4589-ABF9-2FE0E1573381}</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,53 +24,32 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="UnityEngine.UnityWebRequestModule" HintPath="$(UNITY_REFERENCES)\UnityEngine.UnityWebRequestModule.dll" />
+    <Reference Include="System" />
     <Reference Include="UnityEngine.AnimationModule" HintPath="$(UNITY_REFERENCES)\UnityEngine.AnimationModule.dll" />
     <Reference Include="UnityEngine.PhysicsModule" HintPath="$(UNITY_REFERENCES)\UnityEngine.PhysicsModule.dll" />
     <Reference Include="Assembly-CSharp-Publicized" HintPath="$(SL_REFERENCES)\Assembly-CSharp-Publicized.dll" />
     <Reference Include="Assembly-CSharp-firstpass" HintPath="$(SL_REFERENCES)\Assembly-CSharp-firstpass.dll" />
     <Reference Include="UnityEngine.AudioModule" HintPath="$(UNITY_REFERENCES)\UnityEngine.AudioModule.dll" />
     <Reference Include="UnityEngine.CoreModule" HintPath="$(UNITY_REFERENCES)\UnityEngine.CoreModule.dll" />
-    <Reference Include="Exiled.Permissions" HintPath="$(EXILED_REFERENCES)\Exiled.Permissions.dll" />
-    <Reference Include="Exiled.CustomRoles" HintPath="$(EXILED_REFERENCES)\Exiled.CustomRoles.dll" />
-    <Reference Include="Exiled.CustomItems" HintPath="$(EXILED_REFERENCES)\Exiled.CustomItems.dll" />
     <Reference Include="CommandSystem.Core" HintPath="$(SL_REFERENCES)\CommandSystem.Core.dll" />
-    <Reference Include="Exiled.Loader" HintPath="$(EXILED_REFERENCES)\Exiled.Loader.dll" />
     <Reference Include="Exiled.Events" HintPath="$(EXILED_REFERENCES)\Exiled.Events.dll" />
     <Reference Include="Exiled.API" HintPath="$(EXILED_REFERENCES)\Exiled.API.dll" />
-    <Reference Include="NorthwoodLib" HintPath="$(SL_REFERENCES)\NorthwoodLib.dll" />
     <Reference Include="YamlDotNet" HintPath="$(SL_REFERENCES)\YamlDotNet.dll" />
-    <Reference Include="Mono.Posix" HintPath="$(SL_REFERENCES)\Mono.Posix.dll" />
     <Reference Include="0Harmony" HintPath="$(EXILED_REFERENCES)\0Harmony.dll" />
     <Reference Include="PluginAPI" HintPath="$(SL_REFERENCES)\PluginAPI.dll" />
-    <Reference Include="Pooling" HintPath="$(SL_REFERENCES)\Pooling.dll" />
     <Reference Include="Mirror" HintPath="$(SL_REFERENCES)\Mirror.dll" />
-    <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Methods.cs" />
+    <Compile Include="Configs\Config.cs" />
+    <Compile Include="Handlers\PlayerHandlers.cs" />
+    <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScpSwap\Swap.cs" />
-    <Compile Include="Subclasses\Group\Friendly.cs" />
-    <Compile Include="Subclasses\Group\Medic.cs" />
-    <Compile Include="Subclasses\Single\Blatnoy.cs" />
-    <Compile Include="Subclasses\Single\Engineer.cs" />
-    <Compile Include="Subclasses\Single\Godfather.cs" />
-    <Compile Include="Subclasses\Group\GroupSubclass.cs" />
-    <Compile Include="Subclasses\Group\Killer.cs" />
-    <Compile Include="Subclasses\Group\Pickpocket.cs" />
-    <Compile Include="Subclasses\Group\Thief.cs" />
-    <Compile Include="Subclasses\Group\Veteran.cs" />
-    <Compile Include="Subclasses\Single\BigD.cs" />
-    <Compile Include="Subclasses\Single\Lead.cs" />
-    <Compile Include="Subclasses\Single\LittleD.cs" />
-    <Compile Include="Subclasses\Single\Manager.cs" />
-    <Compile Include="Subclasses\Single\Scp181.cs" />
-    <Compile Include="Subclasses\Single\Scp343.cs" />
-    <Compile Include="Subclasses\Single\SingleSubclass.cs" />
-    <Compile Include="Subclasses\Inventory.cs" />
-    <Compile Include="Subclasses\SubclassBase.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\RuCollection.API\RuCollection.API.csproj">
+      <Project>{d1f73c4e-2ad4-4ec9-ac25-cba6290e711f}</Project>
+      <Name>RuCollection.API</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

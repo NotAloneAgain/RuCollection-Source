@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LevelSystem", "LevelSystem\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuCollection.API", "RuCollection.API\RuCollection.API.csproj", "{D1F73C4E-2AD4-4EC9-AC25-CBA6290E711F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subclasses", "Subclasses\Subclasses.csproj", "{EF3198D3-3E94-4589-ABF9-2FE0E1573381}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuCollection.Commands", "RuCollection.Commands\RuCollection.Commands.csproj", "{70C43864-EEB3-422E-B2DD-0DD13D19139B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -45,6 +49,14 @@ Global
 		{D1F73C4E-2AD4-4EC9-AC25-CBA6290E711F}.Debug|x64.Build.0 = Debug|x64
 		{D1F73C4E-2AD4-4EC9-AC25-CBA6290E711F}.Production|x64.ActiveCfg = Production|x64
 		{D1F73C4E-2AD4-4EC9-AC25-CBA6290E711F}.Production|x64.Build.0 = Production|x64
+		{EF3198D3-3E94-4589-ABF9-2FE0E1573381}.Debug|x64.ActiveCfg = Debug|x64
+		{EF3198D3-3E94-4589-ABF9-2FE0E1573381}.Debug|x64.Build.0 = Debug|x64
+		{EF3198D3-3E94-4589-ABF9-2FE0E1573381}.Production|x64.ActiveCfg = Production|x64
+		{EF3198D3-3E94-4589-ABF9-2FE0E1573381}.Production|x64.Build.0 = Production|x64
+		{70C43864-EEB3-422E-B2DD-0DD13D19139B}.Debug|x64.ActiveCfg = Debug|x64
+		{70C43864-EEB3-422E-B2DD-0DD13D19139B}.Debug|x64.Build.0 = Debug|x64
+		{70C43864-EEB3-422E-B2DD-0DD13D19139B}.Production|x64.ActiveCfg = Production|x64
+		{70C43864-EEB3-422E-B2DD-0DD13D19139B}.Production|x64.Build.0 = Production|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

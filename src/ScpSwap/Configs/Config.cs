@@ -25,7 +25,7 @@ namespace ScpSwap.Configs
         public float InfoDuration { get; set; } = 20;
 
         [Description("Длительность возможности перехода")]
-        public ushort SwapDuration { get; set; } = 60;
+        public ushort SwapDuration { get; set; } = 90;
 
         [Description("SCP которым разрешено менять роль.")]
         public List<RoleTypeId> AllowedScps { get; set; } = new(8)
@@ -44,7 +44,7 @@ namespace ScpSwap.Configs
             { RoleTypeId.Scp096, 1 },
             { RoleTypeId.Scp049, 2 },
             { RoleTypeId.Scp173, 1 },
-            { RoleTypeId.Scp939, 1 },
+            { RoleTypeId.Scp939, 2 },
             { RoleTypeId.Scp106, 1 },
             { RoleTypeId.Scp079, 1 },
         };

@@ -38,7 +38,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Force.cs" />
     <Compile Include="Configs\Config.cs" />
     <Compile Include="Handlers\PlayerHandlers.cs" />
     <Compile Include="Plugin.cs" />

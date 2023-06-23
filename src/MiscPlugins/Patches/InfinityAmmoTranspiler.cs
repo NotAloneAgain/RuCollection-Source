@@ -3,6 +3,8 @@ using HarmonyLib;
 using InventorySystem;
 using System.Reflection.Emit;
 using NorthwoodLib.Pools;
+using InventorySystem.Items.Firearms.Ammo;
+using System;
 
 namespace MiscPlugins.Patches
 {
@@ -15,9 +17,17 @@ namespace MiscPlugins.Patches
 
             const int index = 0;
 
-            instructions.InsertRange(index, new CodeInstruction[2]
+            instructions.Clear();
+
+            var listConstructor = typeof(List<AmmoPickup>).GetConstructor(new Type[1] { typeof(int) });
+            instructions.InsertRange(index, new CodeInstruction[7]
             {
-                new CodeInstruction(OpCodes.Ldc_I4_0),
+                new CodeInstruction(OpCodes.Ldc_I4_1),
+                new CodeInstruction(OpCodes.Newobj, listConstructor),
+                new CodeInstruction(OpCodes.Stloc_0),
+                new CodeInstruction(OpCodes.Ldloc_0),
+                new CodeInstruction(OpCodes.Callvirt, typeof(List<AmmoPickup>).GetMethod(nameof(List<AmmoPickup>.Clear))),
+                new CodeInstruction(OpCodes.Ldloc_0),
                 new CodeInstruction(OpCodes.Ret)
             });
 

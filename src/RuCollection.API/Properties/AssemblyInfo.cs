@@ -9,15 +9,18 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany(".grey#9120")]
 [assembly: AssemblyProduct("RuCollection.API")]
 [assembly: AssemblyTrademark(".grey#9120")]
-[assembly: InternalsVisibleTo("Scp035")]
-[assembly: InternalsVisibleTo("ScpSwap")]
-[assembly: InternalsVisibleTo("LevelSystem")]
-[assembly: InternalsVisibleTo("MiscPlugins")]
-[assembly: InternalsVisibleTo("RoundScenarious")]
 [assembly: Guid("d1f73c4e-2ad4-4ec9-ac25-cba6290e711f")]
 [assembly: AssemblyDescription("Plugin for SCP:SL.")]
 [assembly: AssemblyCopyright("Copyright © .grey#9120 2023")]
 [assembly: AssemblyMetadata("RepositoryURL", "https://github.com/NotAloneAgain/RuCollection.API")]
+
+[assembly: InternalsVisibleTo("Scp035")]
+[assembly: InternalsVisibleTo("ScpSwap")]
+[assembly: InternalsVisibleTo("Subclasses")]
+[assembly: InternalsVisibleTo("LevelSystem")]
+[assembly: InternalsVisibleTo("MiscPlugins")]
+[assembly: InternalsVisibleTo("RoundScenarious")]
+[assembly: InternalsVisibleTo("RuCollection.Commands")]
 
 #if DEBUG
 [assembly: AssemblyConfiguration("Debug")]

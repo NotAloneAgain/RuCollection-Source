@@ -11,5 +11,7 @@ namespace RuCollection.API.ScpSwap
         public static List<RoleTypeId> AllowedScps { get; set; }
 
         public static Dictionary<RoleTypeId, int> Slots { get; set; }
+
+        public static bool Prevent { get; set; }
     }
 }

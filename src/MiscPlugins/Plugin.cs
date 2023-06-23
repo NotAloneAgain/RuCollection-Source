@@ -24,26 +24,36 @@ namespace MiscPlugins
         public override void OnEnabled()
         {
             _harmony = new(HarmonyId);
-            _playerHandlers = new();
+            _playerHandlers = new(Config.WeaponHintText);
 
             _harmony.PatchAll(GetType().Assembly);
 
+            Player.Shot += _playerHandlers.OnShot;
+            Player.Hurting += _playerHandlers.OnHurting;
+            Player.UsedItem += _playerHandlers.OnUsedItem;
             Player.ChangingRole += _playerHandlers.OnChangingRole;
+            Player.TriggeringTesla += _playerHandlers.OnTriggeringTesla;
             Player.ReloadingWeapon += _playerHandlers.OnReloadingWeapon;
             Player.InteractingDoor += _playerHandlers.OnInteractingDoor;
             Player.InteractingLocker += _playerHandlers.OnInteractingLocker;
             Player.UnlockingGenerator += _playerHandlers.OnUnlockingGenerator;
+            Player.ActivatingGenerator += _playerHandlers.OnActivatingGenerator;
 
             base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
+            Player.ActivatingGenerator -= _playerHandlers.OnActivatingGenerator;
             Player.UnlockingGenerator -= _playerHandlers.OnUnlockingGenerator;
             Player.InteractingLocker -= _playerHandlers.OnInteractingLocker;
             Player.InteractingDoor -= _playerHandlers.OnInteractingDoor;
             Player.ReloadingWeapon -= _playerHandlers.OnReloadingWeapon;
+            Player.TriggeringTesla -= _playerHandlers.OnTriggeringTesla;
             Player.ChangingRole -= _playerHandlers.OnChangingRole;
+            Player.UsedItem -= _playerHandlers.OnUsedItem;
+            Player.Hurting -= _playerHandlers.OnHurting;
+            Player.Shot -= _playerHandlers.OnShot;
 
             _harmony.UnpatchAll(HarmonyId);
 
