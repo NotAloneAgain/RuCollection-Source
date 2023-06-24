@@ -25,7 +25,7 @@ namespace Subclasses.Handlers
 
             _hasSubclass = new (100);
 
-            _subclasses = new Dictionary<SubclassBase, int>(8)
+            _subclasses = new Dictionary<SubclassBase, int>(50)
             {
                 // D-Boys
 

@@ -35,10 +35,10 @@ namespace RuCollection.Commands
 
             ItemType item = (ItemType)id;
 
-            if (item.GetCategory() is ItemCategory.Firearm or ItemCategory.Grenade or ItemCategory.SCPItem or ItemCategory.MicroHID or ItemCategory.Ammo)
+            if (item.GetCategory() is ItemCategory.Firearm or ItemCategory.Grenade or ItemCategory.SCPItem or ItemCategory.MicroHID or ItemCategory.Ammo or ItemCategory.Armor || item is ItemType.Jailbird)
             {
                 item = ItemType.Medkit;
-                response = "Атятя, какой плахой мальчик, хотел пушку, ладно, держи аптеку :copyright: .grey";
+                player.SendConsoleMessage("Атятя, какой плахой мальчик, хотел пушку, ладно, держи аптеку.", "red");
             }
 
             player.AddItem(item);

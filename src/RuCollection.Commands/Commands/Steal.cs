@@ -91,21 +91,23 @@ namespace RuCollection.Commands
                 (false, true) => 92
             };
 
-            double seconds = (DateTime.Now - _used[player]).TotalSeconds;
+            var now = DateTime.Now;
 
-            if (_used.ContainsKey(player) && seconds <= 30)
+            if (_used.TryGetValue(player, out var time))
             {
-                response = $"Вам осталось ждать {GetSecondsString(seconds)} до следующей попытки.";
-                return false;
-            }
+                double seconds = (now - time).TotalSeconds;
 
-            if (!_used.ContainsKey(player))
-            {
-                _used.Add(player, DateTime.Now);
+                if (seconds <= 30)
+                {
+                    response = $"Вам осталось ждать {GetSecondsString(30 - seconds)} до следующей попытки.";
+                    return false;
+                }
+
+                _used[player] = now;
             }
             else
             {
-                _used[player] = DateTime.Now;
+                _used.Add(player, DateTime.Now);
             }
 
             if (Random.Range(0, 101) >= failureChance)
