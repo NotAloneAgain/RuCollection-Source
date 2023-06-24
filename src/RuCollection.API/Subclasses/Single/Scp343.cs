@@ -30,6 +30,8 @@ namespace RuCollection.API.Subclasses.Single
             }
         }
 
+        public static bool IsDangerous(ItemType item) => item.GetCategory() is ItemCategory.Firearm or ItemCategory.Grenade or ItemCategory.SCPItem or ItemCategory.MicroHID or ItemCategory.Ammo or ItemCategory.Armor || item is ItemType.Jailbird;
+
         public override string Name { get; } = "SCP-343";
 
         public override RoleTypeId Role { get; } = RoleTypeId.ClassD;
@@ -133,7 +135,7 @@ namespace RuCollection.API.Subclasses.Single
                 return;
             }
 
-            if (ev.Pickup.Info.ItemId.GetCategory() is ItemCategory.Firearm or ItemCategory.Grenade or ItemCategory.SCPItem or ItemCategory.MicroHID or ItemCategory.Ammo)
+            if (IsDangerous(ev.Pickup.Type))
             {
                 ev.Pickup.Destroy();
                 ev.IsAllowed = false;
@@ -152,17 +154,12 @@ namespace RuCollection.API.Subclasses.Single
 
                     if (ply.Role.Team == Team.SCPs)
                     {
-                        ply.Heal(1, false);
+                        ply.Heal(0.25f, false);
 
                         continue;
                     }
 
-                    ply.Heal(2, false);
-
-                    if (ply.Health == ply.MaxHealth && ply.MaxHealth < 200)
-                    {
-                        ply.MaxHealth += 2;
-                    }
+                    ply.Heal(1, false);
                 }
 
                 yield return Timing.WaitForSeconds(1);
