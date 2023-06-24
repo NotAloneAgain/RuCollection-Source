@@ -35,7 +35,7 @@ namespace RuCollection.Commands
 
             ItemType item = (ItemType)id;
 
-            if (item.GetCategory() is ItemCategory.Firearm or ItemCategory.Grenade or ItemCategory.SCPItem or ItemCategory.MicroHID or ItemCategory.Ammo or ItemCategory.Armor || item is ItemType.Jailbird)
+            if (Scp343.IsDangerous(item))
             {
                 item = ItemType.Medkit;
                 player.SendConsoleMessage("Атятя, какой плахой мальчик, хотел пушку, ладно, держи аптеку.", "red");
