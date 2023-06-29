@@ -19,6 +19,12 @@ namespace RuCollection.Commands
         {
             Player player = Player.Get(sender);
 
+            if (player == null)
+            {
+                response = "Не получилось найти данные игрока, использующего команду.";
+                return false;
+            }
+
             bool isGod = Scp343.Singleton.Player == player;
 
             if (!isGod)
@@ -27,7 +33,7 @@ namespace RuCollection.Commands
                 return false;
             }
 
-            if (arguments.Count is not 1 || !int.TryParse(arguments.At(0), out int id))
+            if (arguments.Count != 1 || !int.TryParse(arguments.At(0), out int id))
             {
                 response = "Синтаксис команды: .item [ID]";
                 return false;
@@ -35,7 +41,7 @@ namespace RuCollection.Commands
 
             ItemType item = (ItemType)id;
 
-            if (Scp343.IsDangerous(item))
+            if (item.GetCategory() is ItemCategory.Firearm or ItemCategory.Grenade or ItemCategory.SCPItem or ItemCategory.MicroHID or ItemCategory.Ammo or ItemCategory.Armor || item is ItemType.Jailbird)
             {
                 item = ItemType.Medkit;
                 player.SendConsoleMessage("Атятя, какой плахой мальчик, хотел пушку, ладно, держи аптеку.", "red");

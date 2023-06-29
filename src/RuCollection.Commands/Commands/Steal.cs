@@ -48,6 +48,12 @@ namespace RuCollection.Commands
         {
             Player player = Player.Get(sender);
 
+            if (player == null)
+            {
+                response = "Не получилось найти данные игрока, использующего команду.";
+                return false;
+            }
+
             bool isThief = Thief.Singleton.Players.Contains(player);
             bool isPickpocket = Pickpocket.Singleton.Players.Contains(player);
 
@@ -87,8 +93,8 @@ namespace RuCollection.Commands
 
             int failureChance = (isPickpocket, isThief) switch
             {
-                (true, false) => 88,
-                (false, true) => 92
+                (false, true) => 92,
+                _ => 88
             };
 
             var now = DateTime.Now;
@@ -99,7 +105,7 @@ namespace RuCollection.Commands
 
                 if (seconds <= 30)
                 {
-                    response = $"Вам осталось ждать {GetSecondsString(30 - seconds)} до следующей попытки.";
+                    response = $"Вам осталось ждать {(30 - seconds).GetSecondsString()} до следующей попытки.";
                     return false;
                 }
 
@@ -126,8 +132,8 @@ namespace RuCollection.Commands
 
             failureChance = (isPickpocket, isThief) switch
             {
-                (true, false) => 50,
-                (false, true) => 60
+                (false, true) => 60,
+                _ => 50
             };
 
             if (Random.Range(0, 101) >= failureChance)
@@ -135,21 +141,7 @@ namespace RuCollection.Commands
                 target.ShowHint(string.Format(Spalili, player.CustomName), 10);
             }
 
-            return false;
-        }
-
-        private static string GetSecondsString(double seconds)
-        {
-            int secondsInt = (int)seconds;
-            string secondsString = secondsInt switch
-            {
-                int n when n % 100 >= 11 && n % 100 <= 14 => "секунд",
-                int n when n % 10 == 1 => "секунда",
-                int n when n % 10 >= 2 && n % 10 <= 4 => "секунды",
-                _ => "секунд"
-            };
-
-            return secondsInt.ToString() + " " + secondsString;
+            return true;
         }
     }
 }

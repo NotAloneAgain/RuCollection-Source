@@ -40,7 +40,13 @@ namespace RuCollection.Commands
         {
             Player player = Player.Get(sender);
 
-            if (arguments.Count < 1)
+            if (player == null)
+            {
+                response = "Не получилось найти данные игрока, использующего команду.";
+                return false;
+            }
+
+            if (arguments.Count != 1)
             {
                 response = "Синтаксис команды: .force [Номер]";
                 return false;

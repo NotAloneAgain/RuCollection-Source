@@ -43,9 +43,12 @@ namespace Subclasses.Handlers
                 // Scientists
 
                 { Friendly.Singleton, 25 },
+                { Athletic.Singleton, 20 },
                 { Medic.Singleton, 15 },
                 { Lead.Singleton, 10 },
                 { Engineer.Singleton, 9 },
+                { Hidden.Singleton, 8 },
+                { Infected.Singleton, 5 },
                 { Manager.Singleton, 4 },
             };
         }

@@ -12,7 +12,7 @@ namespace RuCollection.API.Subclasses.Group
     {
         private static Medic _singleton;
 
-        private Medic() { }
+        private Medic() : base(2) { }
 
         public static Medic Singleton
         {

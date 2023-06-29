@@ -16,7 +16,7 @@ namespace RuCollection.API.Subclasses.Group
     {
         private static Friendly _singleton;
 
-        private Friendly() { }
+        private Friendly() : base(3) { }
 
         public static Friendly Singleton
         {

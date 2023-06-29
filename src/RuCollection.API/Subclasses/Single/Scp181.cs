@@ -49,7 +49,7 @@ namespace RuCollection.API.Subclasses.Single
         {
             base.Assign(player);
 
-            player.GetEffect(EffectType.MovementBoost).ServerSetState(4, 3600, false);
+            player.GetEffect(EffectType.MovementBoost).ServerSetState(4, 0, false);
 
             string message = "\n\t\t+ У тебя есть:" +
                 "\n\t- Шанс в 4% открыть дверь, к которой доступа не имеешь из-за сбоев в комплексе." +

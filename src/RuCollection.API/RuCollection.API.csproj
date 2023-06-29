@@ -62,6 +62,9 @@
     <Compile Include="Subclasses\Group\Thief.cs" />
     <Compile Include="Subclasses\Group\Veteran.cs" />
     <Compile Include="Subclasses\Single\BigD.cs" />
+    <Compile Include="Subclasses\Single\Hidden.cs" />
+    <Compile Include="Subclasses\Group\Athletic.cs" />
+    <Compile Include="Subclasses\Single\Infected.cs" />
     <Compile Include="Subclasses\Single\Lead.cs" />
     <Compile Include="Subclasses\Single\LittleD.cs" />
     <Compile Include="Subclasses\Single\Manager.cs" />

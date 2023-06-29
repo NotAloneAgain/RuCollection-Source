@@ -21,5 +21,33 @@ namespace RuCollection.API
 
             return target;
         }
+
+        public static void DropAllWithoutKeycard(this Player player)
+        {
+            foreach (var item in player.Items)
+            {
+                if (item.IsKeycard)
+                {
+                    continue;
+                }
+
+                player.DropItem(item);
+            }
+        }
+
+        public static string GetSecondsString(this double seconds)
+        {
+            int secondsInt = (int)seconds;
+
+            string secondsString = secondsInt switch
+            {
+                int n when n % 100 >= 11 && n % 100 <= 14 => "секунд",
+                int n when n % 10 == 1 => "секунда",
+                int n when n % 10 >= 2 && n % 10 <= 4 => "секунды",
+                _ => "секунд"
+            };
+
+            return secondsInt.ToString() + " " + secondsString;
+        }
     }
 }

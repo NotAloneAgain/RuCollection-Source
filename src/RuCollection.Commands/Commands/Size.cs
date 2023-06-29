@@ -23,6 +23,12 @@ namespace RuCollection.Commands
         {
             Player player = Player.Get(sender);
 
+            if (player == null)
+            {
+                response = "Не получилось найти данные игрока, использующего команду.";
+                return false;
+            }
+
             bool isGod = Scp343.Singleton.Player == player;
 
             if (!isGod && !player.RemoteAdminAccess)
@@ -61,7 +67,7 @@ namespace RuCollection.Commands
                 return false;
             }
 
-            if (isGod && (Math.Round(x, 1) > 1.4 || Math.Round(y, 1) > 1.4 || Math.Round(z, 1) > 1.4))
+            if (isGod && (Math.Round(x, 1) is > 1.4 or < 0.2 || Math.Round(y, 1) is > 1.4 or < 0.2 || Math.Round(z, 1) is > 1.4 or < 0.2))
             {
                 response = "Слишком большой размер";
                 return false;
