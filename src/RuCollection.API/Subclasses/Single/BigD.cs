@@ -14,18 +14,7 @@ namespace RuCollection.API.Subclasses.Single
 
         private BigD() { }
 
-        public static BigD Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static BigD Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Гигант";
 

@@ -17,18 +17,7 @@ namespace RuCollection.API.Subclasses.Single
 
         private Scp343() { }
 
-        public static Scp343 Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static Scp343 Singleton => _singleton ??= new();
 
         public override string Name { get; } = "SCP-343";
 

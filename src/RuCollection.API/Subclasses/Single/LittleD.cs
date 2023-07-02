@@ -14,18 +14,7 @@ namespace RuCollection.API.Subclasses.Single
 
         private LittleD() { }
 
-        public static LittleD Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static LittleD Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Карлик";
 

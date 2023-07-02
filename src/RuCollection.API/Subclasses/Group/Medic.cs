@@ -1,10 +1,4 @@
 ﻿using PlayerRoles;
-using RuCollection.API.Subclasses.Single;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RuCollection.API.Subclasses.Group
 {
@@ -14,18 +8,7 @@ namespace RuCollection.API.Subclasses.Group
 
         private Medic() : base(2) { }
 
-        public static Medic Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static Medic Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Медик";
 

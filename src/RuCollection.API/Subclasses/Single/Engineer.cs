@@ -12,18 +12,7 @@ namespace RuCollection.API.Subclasses.Single
 
         private Engineer() { }
 
-        public static Engineer Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static Engineer Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Инженер";
 

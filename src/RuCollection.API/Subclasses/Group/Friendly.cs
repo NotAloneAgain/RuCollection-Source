@@ -2,12 +2,7 @@
 using Exiled.API.Features;
 using MEC;
 using PlayerRoles;
-using RuCollection.API.Subclasses.Single;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace RuCollection.API.Subclasses.Group
@@ -18,18 +13,7 @@ namespace RuCollection.API.Subclasses.Group
 
         private Friendly() : base(3) { }
 
-        public static Friendly Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static Friendly Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Дружелюбный";
 

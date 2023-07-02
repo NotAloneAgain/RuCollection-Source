@@ -8,18 +8,7 @@ namespace RuCollection.API.Subclasses.Group
 
         private Pickpocket() : base() { }
 
-        public static Pickpocket Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static Pickpocket Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Карманник";
 

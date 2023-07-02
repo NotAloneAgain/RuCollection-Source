@@ -11,18 +11,7 @@ namespace RuCollection.API.Subclasses.Group
 
         private Godfather() { }
 
-        public static Godfather Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static Godfather Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Незаконно осужденный";
 

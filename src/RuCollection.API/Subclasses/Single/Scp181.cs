@@ -13,18 +13,7 @@ namespace RuCollection.API.Subclasses.Single
 
         private Scp181() { }
 
-        public static Scp181 Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static Scp181 Singleton => _singleton ??= new();
 
         public override string Name { get; } = "SCP-181";
 

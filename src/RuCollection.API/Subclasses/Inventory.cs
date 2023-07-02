@@ -12,7 +12,7 @@ namespace RuCollection.API.Subclasses
             _items = new (8);
         }
 
-        public Inventory(Dictionary<int, Dictionary<ItemType, int>> chances) : base() => Chances = chances;
+        public Inventory(Dictionary<int, Dictionary<ItemType, int>> chances) : this() => Chances = chances;
 
         public IReadOnlyCollection<ItemType> Items
         {
@@ -26,14 +26,7 @@ namespace RuCollection.API.Subclasses
 
         public IReadOnlyCollection<ItemType> Randomize()
         {
-            if (_items == null)
-            {
-                _items = new(8);
-            }
-            else
-            {
-                _items.Clear();
-            }
+            _items.Clear();
 
             for (int i = 0; i < Chances.Count; i++)
             {

@@ -10,18 +10,7 @@ namespace RuCollection.API.Subclasses.Group
 
         private Thief() : base(2) { }
 
-        public static Thief Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static Thief Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Профессиональный вор";
 

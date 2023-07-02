@@ -16,18 +16,7 @@ namespace RuCollection.API.Subclasses.Single
 
         private Infected() { }
 
-        public static Infected Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static Infected Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Зараженный";
 

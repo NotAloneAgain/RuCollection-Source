@@ -8,18 +8,7 @@ namespace RuCollection.API.Subclasses.Single
 
         private Blatnoy() { }
 
-        public static Blatnoy Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static Blatnoy Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Блатной";
 

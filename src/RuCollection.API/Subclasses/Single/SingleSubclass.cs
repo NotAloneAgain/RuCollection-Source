@@ -40,5 +40,15 @@ namespace RuCollection.API.Subclasses.Single
 
             base.OnPlayerLeft(ev);
         }
+
+        protected override void OnDied(DiedEventArgs ev)
+        {
+            if (Player != ev.Player)
+            {
+                return;
+            }
+
+            base.OnDied(ev);
+        }
     }
 }

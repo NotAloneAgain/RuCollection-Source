@@ -8,18 +8,7 @@ namespace RuCollection.API.Subclasses.Single
 
         private Lead() { }
 
-        public static Lead Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static Lead Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Руководитель";
 

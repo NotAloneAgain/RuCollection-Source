@@ -4,11 +4,7 @@ using Exiled.Events.EventArgs.Player;
 using MEC;
 using PlayerRoles;
 using RuCollection.API.Subclasses.Group;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RuCollection.API.Subclasses.Single
 {
@@ -17,20 +13,12 @@ namespace RuCollection.API.Subclasses.Single
         private static Athletic _singleton;
         private Dictionary<Player, bool> _boosted;
 
-        private Athletic() : base(2) { }
-
-        public static Athletic Singleton
+        private Athletic() : base(2)
         {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
+            _boosted = new(10);
         }
+
+        public static Athletic Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Атлет";
 
@@ -61,6 +49,18 @@ namespace RuCollection.API.Subclasses.Single
             player.GetEffect(EffectType.MovementBoost).ServerSetState(4, 0, false);
 
             _boosted.Add(player, false);
+        }
+
+        public override void Deassign(Player player)
+        {
+            base.Deassign(player);
+
+            if (!Players.Contains(player))
+            {
+                return;
+            }
+
+            _boosted.Remove(player);
         }
 
         public override void Subscribe()

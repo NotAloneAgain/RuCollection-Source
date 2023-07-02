@@ -16,18 +16,7 @@ namespace RuCollection.API.Subclasses.Single
 
         private Hidden() { }
 
-        public static Hidden Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static Hidden Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Скрытный";
 
@@ -48,31 +37,5 @@ namespace RuCollection.API.Subclasses.Single
             }
             },
         });
-        public override void Subscribe()
-        {
-            base.Subscribe();
-
-            Exiled.Events.Handlers.Player.Dying += OnDying;
-        }
-
-        public override void Unsubscribe()
-        {
-            Exiled.Events.Handlers.Player.Dying -= OnDying;
-
-            base.Unsubscribe();
-        }
-
-        private void OnDying(DyingEventArgs ev)
-        {
-            if (ev.Player != Player || !ev.IsAllowed || ev.DamageHandler.Type is DamageType.Unknown or DamageType.Warhead or DamageType.Recontainment or DamageType.Crushed or DamageType.FemurBreaker or DamageType.PocketDimension or DamageType.SeveredHands)
-            {
-                return;
-            }
-
-            ev.IsAllowed = false;
-            ev.Player.DropAllWithoutKeycard();
-
-            ev.Player.Role.Set(RoleTypeId.Scp0492, SpawnReason.Revived, RoleSpawnFlags.None);
-        }
     }
 }

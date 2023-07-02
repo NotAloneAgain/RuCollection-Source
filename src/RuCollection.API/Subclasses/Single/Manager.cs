@@ -13,18 +13,7 @@ namespace RuCollection.API.Subclasses.Single
 
         private Manager() { }
 
-        public static Manager Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static Manager Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Менеджер зоны";
 

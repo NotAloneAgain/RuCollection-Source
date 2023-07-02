@@ -83,14 +83,18 @@ namespace RuCollection.API.Subclasses
         public virtual void Subscribe()
         {
             Exiled.Events.Handlers.Player.Left += OnPlayerLeft;
+            Exiled.Events.Handlers.Player.Died += OnDied;
         }
 
         public virtual void Unsubscribe()
         {
             Exiled.Events.Handlers.Player.Left -= OnPlayerLeft;
+            Exiled.Events.Handlers.Player.Died -= OnDied;
         }
 
         protected virtual void OnPlayerLeft(LeftEventArgs ev) => Deassign(ev.Player);
+
+        protected virtual void OnDied(DiedEventArgs ev) => Deassign(ev.Player);
 
         protected void SetInfo(Player ply, bool status)
         {

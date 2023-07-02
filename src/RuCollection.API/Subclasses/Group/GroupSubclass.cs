@@ -50,5 +50,15 @@ namespace RuCollection.API.Subclasses.Group
 
             base.OnPlayerLeft(ev);
         }
+
+        protected override void OnDied(DiedEventArgs ev)
+        {
+            if (!Players.Contains(ev.Player))
+            {
+                return;
+            }
+
+            base.OnDied(ev);
+        }
     }
 }

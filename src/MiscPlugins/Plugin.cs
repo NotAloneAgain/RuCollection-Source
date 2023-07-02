@@ -29,6 +29,7 @@ namespace MiscPlugins
             _harmony.PatchAll(GetType().Assembly);
 
             Player.Shot += _playerHandlers.OnShot;
+            Player.Dying += _playerHandlers.OnDying;
             Player.Hurting += _playerHandlers.OnHurting;
             Player.UsedItem += _playerHandlers.OnUsedItem;
             Player.ChangingRole += _playerHandlers.OnChangingRole;
@@ -53,6 +54,7 @@ namespace MiscPlugins
             Player.ChangingRole -= _playerHandlers.OnChangingRole;
             Player.UsedItem -= _playerHandlers.OnUsedItem;
             Player.Hurting -= _playerHandlers.OnHurting;
+            Player.Dying -= _playerHandlers.OnDying;
             Player.Shot -= _playerHandlers.OnShot;
 
             _harmony.UnpatchAll(HarmonyId);

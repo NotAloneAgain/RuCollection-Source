@@ -8,18 +8,7 @@ namespace RuCollection.API.Subclasses.Group
 
         private Veteran() : base() { }
 
-        public static Veteran Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static Veteran Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Бывалый";
 

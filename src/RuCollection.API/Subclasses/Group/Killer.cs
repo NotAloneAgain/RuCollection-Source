@@ -13,18 +13,7 @@ namespace RuCollection.API.Subclasses.Group
 
         private Killer() : base(2) { }
 
-        public static Killer Singleton
-        {
-            get
-            {
-                if (_singleton == null)
-                {
-                    _singleton = new();
-                }
-
-                return _singleton;
-            }
-        }
+        public static Killer Singleton => _singleton ??= new();
 
         public override string Name { get; } = "Убийца";
 
