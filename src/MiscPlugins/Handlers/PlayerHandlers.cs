@@ -26,7 +26,7 @@ namespace MiscPlugins.Handlers
         }
 
         public void OnInteractingDoor(InteractingDoorEventArgs ev) => ev.IsAllowed
-                = ev.IsAllowed || !ev.Door.IsLocked && ev.Player.Items.Any(x => x.Is(out Keycard card) && ev.Door.RequiredPermissions.CheckPermissions(card.Base, ev.Player.ReferenceHub));
+                = ev.IsAllowed || !ev.Door.IsKeycardDoor || !ev.Door.IsLocked && !ev.Door.IsBroken && !ev.Door.IsMoving && ev.Player.Items.Any(x => x.Is(out Keycard card) && ev.Door.RequiredPermissions.CheckPermissions(card.Base, ev.Player.ReferenceHub));
 
         public void OnInteractingLocker(InteractingLockerEventArgs ev) => ev.IsAllowed
                 = ev.IsAllowed || ev.Player.Items.Any(x => x.Is(out Keycard card) && HasFlagFast(card.Permissions, KeycardPermissions.Checkpoints) && HasFlagFast(card.Permissions, KeycardPermissions.ContainmentLevelTwo));
