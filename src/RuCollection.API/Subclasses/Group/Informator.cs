@@ -66,7 +66,7 @@ namespace RuCollection.API.Subclasses.Group
         public override void Assign(Player player)
         {
             base.Assign(player);
-            player.SendConsoleMessage($" {Player.Get(Team.SCPs)}", "red");
+            player.SendConsoleMessage($"{Player.Get(Team.SCPs)}", "red");
         }
     }
 }
