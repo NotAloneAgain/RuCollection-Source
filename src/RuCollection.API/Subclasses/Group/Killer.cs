@@ -83,6 +83,7 @@ namespace RuCollection.API.Subclasses.Group
 
         private string Parse(RoomType room) => room switch
         {
+            RoomType.LczCafe => "комнате с компьютерами",
             RoomType.Lcz173 => "оружейке К.С. SCP-173.",
             RoomType.LczToilets => "туалетах",
             RoomType.LczGlassBox => "стеклянном контейнере GR18",
