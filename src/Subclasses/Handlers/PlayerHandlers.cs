@@ -50,6 +50,16 @@ namespace Subclasses.Handlers
                 { Hidden.Singleton, 8 },
                 { Infected.Singleton, 5 },
                 { Manager.Singleton, 4 },
+
+                //Facility-Guards
+
+                {StormTrooper.Singleton, 12 },
+                {Bomber.Singleton, 15 },
+                {Sniper.Singleton, 10 },
+                {Imposter.Singleton, 2 },
+                {JuniorGuard.Singleton, 10 },
+                {GuardCaptain.Singleton, 15 },
+                {Informator.Singleton, 10 },
             };
         }
 
