@@ -1,36 +1,37 @@
 ﻿using Exiled.API.Enums;
 using Exiled.API.Features;
 using PlayerRoles;
+using RuCollection.API.Subclasses.Single;
 using UnityEngine;
 
-namespace RuCollection.API.Subclasses.Group
+namespace RuCollection.API.Subclasses.Single
 {
-    public sealed class StormTrooper : GroupSubclass
+    public sealed class GuardCaptain : SingleSubclass
     {
-        private static StormTrooper _singleton;
+        private static GuardCaptain _singleton;
 
-        private StormTrooper() : base(2) { }
+        private GuardCaptain() : base() { }
 
-        public static StormTrooper Singleton => _singleton ??= new();
+        public static GuardCaptain Singleton => _singleton ??= new();
 
-        public override string Name { get; } = "Штурмовик";
+        public override string Name { get; } = "Глава охраны";
 
         public override RoleTypeId Role { get; } = RoleTypeId.FacilityGuard;
 
-        public override string Message { get; } = "Вы - штурмовик!\nЯвляетесь сильной боевой единицей с хорошей защитой.";
+        public override string Message { get; } = "Вы - глава охраны!\nВы можете руководить другими охранниками так как более профессиональны.";
 
-        public override float Health { get; } = 150;
+        public override bool Show { get; } = true;
 
-        public override Inventory Inventory { get; } = new Inventory(new(7)
+        public override Inventory Inventory { get; } = new Inventory(new(6)
         {
             { 0, new (1)
             {
-                { ItemType.KeycardGuard, 100 },
+                { ItemType.KeycardNTFOfficer, 100 },
             }
             },
             { 1, new (1)
             {
-                { ItemType.GunFSP9, 100 },
+                { ItemType.GunCrossvec, 100 },
             }
             },
             { 2, new (1)

@@ -17,11 +17,9 @@ namespace RuCollection.API.Subclasses.Group
 
         public override RoleTypeId Role { get; } = RoleTypeId.FacilityGuard;
 
-        public override string Message { get; } = "Вы - подрывник!\nУ вас есть пиротехника.";
+        public override string Message { get; } = "Вы - подрывник!\nУ вас есть осколочная граната и дробовик.";
 
-        public override bool Show { get; } = true;
-
-        public override Inventory Inventory { get; } = new Inventory(new(6)
+        public override Inventory Inventory { get; } = new Inventory(new(7)
         {
             { 0, new (1)
             {
@@ -35,7 +33,7 @@ namespace RuCollection.API.Subclasses.Group
             },
             { 2, new (1)
             {
-                {ItemType.Medkit, 100 },
+                { ItemType.Radio, 100 },
             }
             },
             { 3, new (1)
@@ -45,14 +43,14 @@ namespace RuCollection.API.Subclasses.Group
             },
             { 4, new (1)
             {
-                { ItemType.Radio, 100 },
+                {ItemType.Medkit, 100 },
             }
             },
             { 5, new(1)
             {
-                {ItemType.ArmorCombat, 100 }
+                {ItemType.ArmorCombat, 100 },
             }
-            }
+            },
         });
 
         public override void Assign(Player player)

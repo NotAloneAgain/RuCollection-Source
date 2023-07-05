@@ -18,9 +18,7 @@ namespace RuCollection.API.Subclasses.Single
 
         public override RoleTypeId Role { get; } = RoleTypeId.FacilityGuard;
 
-        public override string Message { get; } = "Вы - предатель!\nИспользуйте команду \".rifleman\", в консоли (\"ё\") чтобы переодеться в повтанца хаоса.";
-
-        public override bool Show { get; } = true;
+        public override string Message { get; } = "Вы - предатель!\nИспользуй команду .betray чтобы одеть костюм хаоса.";
 
         public override Inventory Inventory { get; } = new Inventory(new(7)
         {
@@ -36,7 +34,7 @@ namespace RuCollection.API.Subclasses.Single
             },
             { 2, new (1)
             {
-                {ItemType.Medkit, 100 },
+                { ItemType.Radio, 100 },
             }
             },
             { 3, new (1)
@@ -46,7 +44,7 @@ namespace RuCollection.API.Subclasses.Single
             },
             { 4, new (1)
             {
-                { ItemType.Radio, 100 },
+                {ItemType.Medkit, 100 },
             }
             },
             { 5, new(1)
@@ -55,6 +53,7 @@ namespace RuCollection.API.Subclasses.Single
             }
             },
         });
+
 
         public override void Assign(Player player)
         {

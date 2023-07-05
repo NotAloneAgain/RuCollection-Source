@@ -38,17 +38,17 @@ namespace RuCollection.Commands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
+            if (arguments.Count != 1)
+            {
+                response = "Синтаксис команды: .force [Номер]";
+                return false;
+            }
+
             Player player = Player.Get(sender);
 
             if (player == null)
             {
                 response = "Не получилось найти данные игрока, использующего команду.";
-                return false;
-            }
-
-            if (arguments.Count != 1)
-            {
-                response = "Синтаксис команды: .force [Номер]";
                 return false;
             }
 

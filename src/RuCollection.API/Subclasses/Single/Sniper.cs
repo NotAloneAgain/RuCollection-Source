@@ -20,8 +20,6 @@ namespace RuCollection.API.Subclasses.Single
 
         public override string Message { get; } = "Вы - снайпер!\nУ вас есть винтовка.";
 
-        public override bool Show { get; } = true;
-
         public override Inventory Inventory { get; } = new Inventory(new(7)
         {
             { 0, new (1)
@@ -36,7 +34,7 @@ namespace RuCollection.API.Subclasses.Single
             },
             { 2, new (1)
             {
-                {ItemType.Medkit, 100 },
+                { ItemType.Radio, 100 },
             }
             },
             { 3, new (1)
@@ -46,24 +44,19 @@ namespace RuCollection.API.Subclasses.Single
             },
             { 4, new (1)
             {
-                { ItemType.Radio, 100 },
+                {ItemType.Medkit, 100 },
             }
             },
-            { 5, new(1)
+            { 5, new (1)
+            {
+                {ItemType.Adrenaline, 100 },
+            }
+            },
+            { 6, new(1)
             {
                 {ItemType.ArmorLight, 100 },
             }
             },
-            { 6, new (1)
-            {
-                {ItemType.Adrenaline, 100 }
-            }
-            }
         });
-
-        public override void Assign(Player player)
-        {
-            base.Assign(player);
-        }
     }
 }
