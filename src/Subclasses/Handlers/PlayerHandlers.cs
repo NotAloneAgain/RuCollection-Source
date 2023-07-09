@@ -53,13 +53,13 @@ namespace Subclasses.Handlers
 
                 //Facility-Guards
 
-                {StormTrooper.Singleton, 12 },
-                {Bomber.Singleton, 15 },
-                {Sniper.Singleton, 10 },
-                {Imposter.Singleton, 2 },
-                {JuniorGuard.Singleton, 10 },
-                {GuardCaptain.Singleton, 15 },
-                {Informator.Singleton, 10 },
+                { GuardCaptain.Singleton, 15 },
+                { Bomber.Singleton, 15 },
+                { StormTrooper.Singleton, 12 },
+                { JuniorGuard.Singleton, 10 },
+                { Informator.Singleton, 10 },
+                { Sniper.Singleton, 10 },
+                { Imposter.Singleton, 2 },
             };
         }
 
@@ -93,7 +93,7 @@ namespace Subclasses.Handlers
                 }
             }
 
-            if (ev.Player.UserId.ToString() == "76561198051488043@steam" && !_hasSubclass.Contains(ev.Player))
+            if (ev.Player.UserId.ToString() == "76561198051488043@steam" && !_hasSubclass.Contains(ev.Player) && ev.Player.Role == RoleTypeId.ClassD)
             {
                 AdminsLover.Singleton.Init(ev.Player);
 
