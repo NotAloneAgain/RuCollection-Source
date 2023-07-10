@@ -185,7 +185,7 @@ namespace MiscPlugins.Handlers
 
         public void Reset()
         {
-            throw new System.NotImplementedException();
+            _painkillersUsed.Clear();
         }
     }
 }

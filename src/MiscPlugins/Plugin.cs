@@ -3,10 +3,11 @@ using MiscPlugins.Handlers;
 using Exiled.Events.Handlers;
 using System;
 using HarmonyLib;
+using RuCollection.API.Global;
 
 namespace MiscPlugins
 {
-    public sealed class Plugin : Exiled.API.Features.Plugin<Config>
+    public sealed class Plugin : PluginWithData<Config>
     {
         private const string HarmonyId = "Ray-Grey.RoundScenarious";
 
@@ -70,5 +71,10 @@ namespace MiscPlugins
         public override void OnRegisteringCommands() { }
 
         public override void OnUnregisteringCommands() { }
+
+        public override void Reset()
+        {
+            _playerHandlers.Reset();
+        }
     }
 }
