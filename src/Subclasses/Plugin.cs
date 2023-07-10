@@ -1,11 +1,12 @@
 ﻿using Exiled.Events.Handlers;
+using RuCollection.API.Global;
 using Subclasses.Configs;
 using Subclasses.Handlers;
 using System;
 
 namespace Subclasses
 {
-    public sealed class Plugin : Exiled.API.Features.Plugin<Config>
+    public sealed class Plugin : PluginWithData<Config>
     {
         private PlayerHandlers _handlers;
 
@@ -42,5 +43,10 @@ namespace Subclasses
         public override void OnRegisteringCommands() { }
 
         public override void OnUnregisteringCommands() { }
+
+        public override void Reset()
+        {
+            _handlers.Reset();
+        }
     }
 }

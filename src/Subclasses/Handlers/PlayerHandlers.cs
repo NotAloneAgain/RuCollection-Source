@@ -2,6 +2,7 @@
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
 using PlayerRoles;
+using RuCollection.API.Global;
 using RuCollection.API.Subclasses;
 using RuCollection.API.Subclasses.Group;
 using RuCollection.API.Subclasses.Single;
@@ -11,7 +12,7 @@ using UnityEngine;
 
 namespace Subclasses.Handlers
 {
-    internal sealed class PlayerHandlers
+    internal sealed class PlayerHandlers : IHasData
     {
         private static IReadOnlyDictionary<SubclassBase, int> _subclasses;
         private static List<Player> _hasSubclass;
@@ -139,6 +140,11 @@ namespace Subclasses.Handlers
                     continue;
                 }
            }
+        }
+
+        public void Reset()
+        {
+            _hasSubclass.Clear();
         }
     }
 }
