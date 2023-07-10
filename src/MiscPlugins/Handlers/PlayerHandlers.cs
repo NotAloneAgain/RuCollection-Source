@@ -119,6 +119,7 @@ namespace MiscPlugins.Handlers
             {
                 ev.IsAllowed = false;
 
+                ev.ItemsToDrop?.Clear();
                 ev.Player.DropAllWithoutKeycard();
 
                 ev.Player.Role.Set(PlayerRoles.RoleTypeId.Scp0492, SpawnReason.Died, PlayerRoles.RoleSpawnFlags.None);

@@ -19,6 +19,11 @@ namespace RuCollection.API
 
         public static void DropAllWithoutKeycard(this Player player)
         {
+            if (player.IsInventoryEmpty)
+            {
+                return;
+            }
+
             foreach (var item in player.Items)
             {
                 if (item.IsKeycard)

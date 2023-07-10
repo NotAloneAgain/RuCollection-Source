@@ -1,5 +1,6 @@
 ﻿using CommandSystem;
 using Exiled.API.Features;
+using RuCollection.API.Global;
 using RuCollection.API.Subclasses.Single;
 using System;
 using System.Collections.Generic;
@@ -8,18 +9,17 @@ using UnityEngine;
 
 namespace RuCollection.Commands
 {
-    [CommandHandler(typeof(ClientCommandHandler))]
-    [CommandHandler(typeof(GameConsoleCommandHandler))]
-    [CommandHandler(typeof(RemoteAdminCommandHandler))]
-    public sealed class Size : ICommand
+    public sealed class Size : CustomCommand
     {
-        public string Command { get; } = "size";
+        public override string Command { get; } = "size";
 
-        public string[] Aliases { get; } = Array.Empty<string>();
+        public override string[] Aliases { get; } = Array.Empty<string>();
 
-        public string Description { get; } = "Команда для смены размера. Работает исключительно для SCP-343 и админов.";
+        public override string Description { get; } = "Команда для смены размера. Работает исключительно для SCP-343 и админов.";
 
-        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        public override List<CommandType> Types { get; } = new List<CommandType>(3) { CommandType.PlayerConsole, CommandType.RemoteAdmin, CommandType.ServerConsole };
+
+        public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player = Player.Get(sender);
 

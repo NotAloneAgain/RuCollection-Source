@@ -49,7 +49,7 @@ namespace RuCollection.API.Subclasses.Single
 
         private void OnDying(DyingEventArgs ev)
         {
-            if (ev.Player != Player || !ev.IsAllowed || ev.DamageHandler.Type is DamageType.Unknown or DamageType.Warhead or DamageType.Recontainment or DamageType.Crushed or DamageType.FemurBreaker or DamageType.PocketDimension or DamageType.SeveredHands)
+            if (ev.Player != Player || !ev.IsAllowed || ev.DamageHandler.Type is DamageType.Unknown or DamageType.Warhead or DamageType.Recontainment or DamageType.Crushed or DamageType.FemurBreaker or DamageType.PocketDimension or DamageType.SeveredHands || Player.Role.Type != Role)
             {
                 return;
             }

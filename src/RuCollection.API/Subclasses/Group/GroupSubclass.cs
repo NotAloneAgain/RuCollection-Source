@@ -1,21 +1,31 @@
 ﻿using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
+using RuCollection.API.Global;
 using System.Collections.Generic;
 
 namespace RuCollection.API.Subclasses.Group
 {
-    public abstract class GroupSubclass : SubclassBase
+    public abstract class GroupSubclass : SubclassBase, IHasData
     {
         private readonly int _max;
 
-        public GroupSubclass(int count = 0)
-        {
-            Players = new (count == 0 ? 60 : count);
-
-            _max = count;;
-        }
+        public GroupSubclass(int count = 0) => _max = count == 0 ? Server.MaxPlayerCount : count;
 
         public List<Player> Players { get; private set; }
+
+        public override void Init(Player player)
+        {
+            Players = new(_max);
+
+            base.Init(player);
+        }
+
+        public override void Destroy(Player player)
+        {
+            Reset();
+
+            base.Destroy(player);
+        }
 
         public override void Assign(Player player)
         {
@@ -48,6 +58,13 @@ namespace RuCollection.API.Subclasses.Group
                 return;
             }
 
+            if (Players.Count == 1)
+            {
+                Destroy(ev.Player);
+
+                return;
+            }
+
             base.OnPlayerLeft(ev);
         }
 
@@ -58,7 +75,19 @@ namespace RuCollection.API.Subclasses.Group
                 return;
             }
 
+            if (Players.Count == 1)
+            {
+                Destroy(ev.Player);
+
+                return;
+            }
+
             base.OnDied(ev);
+        }
+
+        public void Reset()
+        {
+            Players.Clear();
         }
     }
 }

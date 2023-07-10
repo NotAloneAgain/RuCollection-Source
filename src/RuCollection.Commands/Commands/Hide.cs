@@ -9,8 +9,7 @@ using System.Collections.Generic;
 
 namespace RuCollection.Commands
 {
-    [CommandHandler(typeof(ClientCommandHandler))]
-    public sealed class Hide : ICommand, IHasData
+    public sealed class Hide : CommandWithData
     {
         private static Dictionary<Player, DateTime> _used;
 
@@ -19,13 +18,15 @@ namespace RuCollection.Commands
             _used = new();
         }
 
-        public string Command { get; } = "hide";
+        public override string Command { get; } = "hide";
 
-        public string[] Aliases { get; } = Array.Empty<string>();
+        public override string[] Aliases { get; } = Array.Empty<string>();
 
-        public string Description { get; } = "Команда для сокрытия. Работает исключительно для скрытого подкласса.";
+        public override string Description { get; } = "Команда для сокрытия. Работает исключительно для скрытого подкласса.";
 
-        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        public override List<CommandType> Types { get; } = new List<CommandType>(1) { CommandType.PlayerConsole };
+
+        public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player = Player.Get(sender);
 
@@ -72,7 +73,7 @@ namespace RuCollection.Commands
             return true;
         }
 
-        public void Reset()
+        public override void Reset()
         {
             _used.Clear();
         }

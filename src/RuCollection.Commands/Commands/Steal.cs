@@ -10,10 +10,8 @@ using Random = UnityEngine.Random;
 
 namespace RuCollection.Commands
 {
-    [CommandHandler(typeof(ClientCommandHandler))]
-    public sealed class Steal : ICommand, IHasData
+    public sealed class Steal : CommandWithData
     {
-        private const string Spalili = "<line-height=95%><size=95%><voffset=-20em><color=#BC5D58>Вы услышали как что-то шуршит в ваших карманах... {0} выглядит подозрительным...</color></size></voffset>";
         private static List<ItemType> _banned;
         private static Dictionary<Player, DateTime> _used;
 
@@ -39,13 +37,15 @@ namespace RuCollection.Commands
             _used = new();
         }
 
-        public string Command { get; } = "steal";
+        public override string Command { get; } = "steal";
 
-        public string[] Aliases { get; } = Array.Empty<string>();
+        public override string[] Aliases { get; } = Array.Empty<string>();
 
-        public string Description { get; } = "Команда для воровства. Работает исключительно для карманника и профессионального вора.";
+        public override string Description { get; } = "Команда для воровства. Работает исключительно для карманника и профессионального вора.";
 
-        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        public override List<CommandType> Types { get; } = new List<CommandType>(1) { CommandType.PlayerConsole };
+
+        public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player = Player.Get(sender);
 
@@ -121,7 +121,7 @@ namespace RuCollection.Commands
             {
                 response = "Мням, спиздец не удалось, нам пиздец. Быстрые ноги пизды не получааааааааааааааааааааааааааааат....";
 
-                target.ShowHint(string.Format(Spalili, player.CustomName), 10);
+                target.ShowHint(string.Format(StringConstants.StealFailed, player.CustomName), 10);
 
                 return false;
             }
@@ -139,13 +139,13 @@ namespace RuCollection.Commands
 
             if (Random.Range(0, 101) >= failureChance)
             {
-                target.ShowHint(string.Format(Spalili, player.CustomName), 10);
+                target.ShowHint(string.Format(StringConstants.StealFailed, player.CustomName), 10);
             }
 
             return true;
         }
 
-        public void Reset()
+        public override void Reset()
         {
             _used.Clear();
         }

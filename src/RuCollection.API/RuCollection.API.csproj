@@ -38,8 +38,12 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global\CommandType.cs" />
+    <Compile Include="Global\CommandWithData.cs" />
+    <Compile Include="Global\CustomCommand.cs" />
     <Compile Include="Global\IHasData.cs" />
     <Compile Include="Global\PluginWithData.cs" />
+    <Compile Include="Global\StringConstants.cs" />
     <Compile Include="Methods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScpSwap\Swap.cs" />

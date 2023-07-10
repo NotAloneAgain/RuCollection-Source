@@ -27,14 +27,14 @@ namespace RuCollection.API.Subclasses
 
         public virtual Vector3 Size { get; } = Vector3.zero;
 
-        public void Init(Player player)
+        public virtual void Init(Player player)
         {
             Subscribe();
 
             Assign(player);
         }
 
-        public void Destroy(Player player)
+        public virtual void Destroy(Player player)
         {
             Deassign(player);
 

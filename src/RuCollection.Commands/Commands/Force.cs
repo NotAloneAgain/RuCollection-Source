@@ -11,26 +11,24 @@ using System.Linq;
 
 namespace RuCollection.Commands
 {
-    [CommandHandler(typeof(ClientCommandHandler))]
-    internal sealed class Force : ICommand, IHasData
+    internal sealed class Force : CommandWithData
     {
-        private Dictionary<Player, bool> _forced;
+        private static Dictionary<Player, bool> _forced;
 
-        public Force()
+        static Force()
         {
-            if (Swap.Prevent)
-            {
-                _forced = new(8);
-            }
+            _forced = new(8);
         }
 
-        public string Command { get; } = "force";
+        public override string Command { get; } = "force";
 
-        public string[] Aliases { get; } = Array.Empty<string>();
+        public override string[] Aliases { get; } = Array.Empty<string>();
 
-        public string Description { get; } = "Команда для смены своего класса. Работает исключительно для SCP-Объектов.";
+        public override string Description { get; } = "Команда для смены своего класса. Работает исключительно для SCP-Объектов.";
 
-        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        public override List<CommandType> Types { get; } = new List<CommandType>(1) { CommandType.PlayerConsole };
+
+        public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (arguments.Count != 1)
             {
@@ -117,7 +115,7 @@ namespace RuCollection.Commands
             return true;
         }
 
-        public void Reset()
+        public override void Reset()
         {
             _forced.Clear();
         }

@@ -102,46 +102,6 @@ namespace Subclasses.Handlers
             }
         }
 
-        public void OnDied(DiedEventArgs ev)
-        {
-            if (!_hasSubclass.Contains(ev.Player))
-            {
-                return;
-            }
-
-            foreach (var subclass in _subclasses.Where(x => x.Key.Role == ev.TargetOldRole))
-            {
-                var single = subclass.Key as SingleSubclass;
-                var group = subclass.Key as GroupSubclass;
-
-                if (single == null && group == null)
-                {
-                    continue;
-                }
-
-                if (group == null && single.Player == ev.Player)
-                {
-                    subclass.Key.Destroy(ev.Player);
-
-                    continue;
-                }
-
-                if (single == null && group.Players.Contains(ev.Player))
-                {
-                    if (group.Players.Count == 1)
-                    {
-                        subclass.Key.Destroy(ev.Player);
-
-                        continue;
-                    }
-
-                    subclass.Key.Deassign(ev.Player);
-
-                    continue;
-                }
-           }
-        }
-
         public void Reset()
         {
             _hasSubclass.Clear();

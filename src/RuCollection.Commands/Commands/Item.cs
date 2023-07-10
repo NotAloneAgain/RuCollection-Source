@@ -1,21 +1,24 @@
 ﻿using CommandSystem;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
+using RuCollection.API.Global;
 using RuCollection.API.Subclasses.Single;
 using System;
+using System.Collections.Generic;
 
 namespace RuCollection.Commands
 {
-    [CommandHandler(typeof(ClientCommandHandler))]
-    public sealed class Item : ICommand
+    public sealed class Item : CustomCommand
     {
-        public string Command { get; } = "item";
+        public override string Command { get; } = "item";
 
-        public string[] Aliases { get; } = Array.Empty<string>();
+        public override string[] Aliases { get; } = Array.Empty<string>();
 
-        public string Description { get; } = "Команда для выдачи себе предмета. Работает исключительно для SCP-343.";
+        public override string Description { get; } = "Команда для выдачи себе предмета. Работает исключительно для SCP-343.";
 
-        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        public override List<CommandType> Types { get; } = new List<CommandType>(1) { CommandType.PlayerConsole };
+
+        public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player = Player.Get(sender);
 

@@ -38,7 +38,7 @@ namespace RuCollection.API.Subclasses.Single
                 return;
             }
 
-            base.OnPlayerLeft(ev);
+            Destroy(ev.Player);
         }
 
         protected override void OnDied(DiedEventArgs ev)
@@ -48,7 +48,7 @@ namespace RuCollection.API.Subclasses.Single
                 return;
             }
 
-            base.OnDied(ev);
+            Destroy(ev.Player);
         }
     }
 }

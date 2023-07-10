@@ -22,7 +22,6 @@ namespace Subclasses
         {
             _handlers = new();
 
-            Player.Died += _handlers.OnDied;
             Player.ChangingRole += _handlers.OnChangingRole;
 
             base.OnEnabled();
@@ -31,7 +30,6 @@ namespace Subclasses
         public override void OnDisabled()
         {
             Player.ChangingRole -= _handlers.OnChangingRole;
-            Player.Died -= _handlers.OnDied;
 
             _handlers = null;
 
