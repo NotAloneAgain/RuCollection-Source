@@ -48,7 +48,30 @@ namespace RuCollection.API.Global
 
         public void Unsubscribe()
         {
+            foreach (var type in Types)
+            {
+                switch (type)
+                {
+                    case CommandType.RemoteAdmin:
+                        {
+                            CommandProcessor.RemoteAdminCommandHandler.UnregisterCommand(this);
 
+                            break;
+                        }
+                    case CommandType.PlayerConsole:
+                        {
+                            GameCore.Console.singleton.ConsoleCommandHandler.UnregisterCommand(this);
+
+                            break;
+                        }
+                    case CommandType.ServerConsole:
+                        {
+                            QueryProcessor.DotCommandHandler.UnregisterCommand(this);
+
+                            break;
+                        }
+                }
+            }
         }
     }
 }
