@@ -1,6 +1,5 @@
 ﻿using PlayerRoles;
 using System.Collections.Generic;
-using Exiled.API.Features;
 
 namespace RuCollection.API.ScpSwap
 {

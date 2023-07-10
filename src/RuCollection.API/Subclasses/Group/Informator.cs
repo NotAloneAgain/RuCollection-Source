@@ -1,18 +1,8 @@
-﻿using CommandSystem;
-using Exiled.API.Enums;
-using Exiled.API.Features;
-using Exiled.API.Features.Pickups;
-using Exiled.API.Features.Roles;
+﻿using Exiled.API.Features;
 using MEC;
 using PlayerRoles;
-using PluginAPI.Commands;
-using PluginAPI.Enums;
 using RuCollection.API.ScpSwap;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace RuCollection.API.Subclasses.Group
 {

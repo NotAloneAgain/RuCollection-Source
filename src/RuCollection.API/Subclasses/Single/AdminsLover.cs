@@ -1,9 +1,4 @@
 ﻿using PlayerRoles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace RuCollection.API.Subclasses.Single
@@ -26,6 +21,6 @@ namespace RuCollection.API.Subclasses.Single
 
         public override bool Show { get; } = true;
 
-        public override Vector3 Size { get; } = Vector3.one * 0.77f;
+        public override Vector3 Size { get; } = Vector3.one * 0.5f;
     }
 }

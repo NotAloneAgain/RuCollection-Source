@@ -1,9 +1,9 @@
-﻿using MiscPlugins.Configs;
-using MiscPlugins.Handlers;
-using Exiled.Events.Handlers;
-using System;
+﻿using Exiled.Events.Handlers;
 using HarmonyLib;
+using MiscPlugins.Configs;
+using MiscPlugins.Handlers;
 using RuCollection.API.Global;
+using System;
 
 namespace MiscPlugins
 {

@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using HarmonyLib;
+﻿using HarmonyLib;
 using InventorySystem;
-using System.Reflection.Emit;
-using NorthwoodLib.Pools;
 using InventorySystem.Items.Firearms.Ammo;
+using NorthwoodLib.Pools;
 using System;
+using System.Collections.Generic;
+using System.Reflection.Emit;
 
 namespace MiscPlugins.Patches
 {
