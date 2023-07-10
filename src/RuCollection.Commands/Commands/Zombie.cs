@@ -1,14 +1,10 @@
 ﻿using CommandSystem;
 using Exiled.API.Enums;
 using Exiled.API.Features;
-using MEC;
 using PlayerRoles;
 using RuCollection.API;
-using RuCollection.API.ScpSwap;
 using RuCollection.API.Subclasses.Single;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace RuCollection.Commands
 {

@@ -1,7 +1,4 @@
 ﻿using Exiled.Events.Handlers;
-using HarmonyLib;
-using PluginAPI.Core.Attributes;
-using PluginAPI.Events;
 using Subclasses.Configs;
 using Subclasses.Handlers;
 using System;

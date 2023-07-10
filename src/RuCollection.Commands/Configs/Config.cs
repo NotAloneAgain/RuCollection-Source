@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using Exiled.API.Interfaces;
+﻿using Exiled.API.Interfaces;
+using System.ComponentModel;
 
 namespace RuCollection.Commands.Configs
 {
