@@ -100,7 +100,7 @@ namespace MiscPlugins.Handlers
 
             if (ev.DamageHandler.Type == DamageType.Scp939 || ev.DamageHandler.Type == DamageType.Firearm && !ev.Player.HasItem(ItemType.ArmorHeavy))
             {
-                ev.Player.EnableEffect(EffectType.Bleeding, 4, true);
+                ev.Player.EnableEffect(EffectType.Bleeding, 6, true);
             }
 
             if (_painkillersUsed.TryGetValue(ev.Player, out var time) && (System.DateTime.Now - time).TotalSeconds <= 120 && ev.DamageHandler.Type is DamageType.Falldown or DamageType.Bleeding or DamageType.Explosion or DamageType.Scp or DamageType.Scp018 or DamageType.Scp207 or DamageType.Firearm)
