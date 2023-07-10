@@ -60,13 +60,13 @@ namespace RuCollection.API.Global
                         }
                     case CommandType.PlayerConsole:
                         {
-                            GameCore.Console.singleton.ConsoleCommandHandler.UnregisterCommand(this);
+                            QueryProcessor.DotCommandHandler.UnregisterCommand(this);
 
                             break;
                         }
                     case CommandType.ServerConsole:
                         {
-                            QueryProcessor.DotCommandHandler.UnregisterCommand(this);
+                            GameCore.Console.singleton.ConsoleCommandHandler.UnregisterCommand(this);
 
                             break;
                         }
