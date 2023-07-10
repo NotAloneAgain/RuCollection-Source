@@ -26,6 +26,7 @@ namespace RuCollection.Commands
 
         public override void OnRegisteringCommands()
         {
+            Commands.Add(new Betray());
             Commands.Add(new Force());
             Commands.Add(new Hide());
             Commands.Add(new Item());

@@ -1,24 +1,24 @@
 ﻿using CommandSystem;
 using Exiled.API.Features;
 using PlayerRoles;
-using RuCollection.API;
-using RuCollection.API.Subclasses.Group;
+using RuCollection.API.Global;
 using RuCollection.API.Subclasses.Single;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+
 namespace RuCollection.Commands
 {
-    [CommandHandler(typeof(ClientCommandHandler))]
-    public sealed class Betray : ICommand
+    public sealed class Betray : CustomCommand
     {
-        public string Command { get; } = "betray";
+        public override string Command { get; } = "betray";
 
-        public string[] Aliases { get; } = Array.Empty<string>();
+        public override string[] Aliases { get; } = Array.Empty<string>();
 
-        public string Description { get; } = "Команда для предательства. Работает исключительно для скрытого подкласса.";
+        public override string Description { get; } = "Команда для предательства. Работает исключительно для скрытого подкласса.";
 
-        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        public override List<CommandType> Types { get; } = new List<CommandType>(1) { CommandType.PlayerConsole };
+
+        public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (arguments.Count is not 0)
             {
@@ -42,10 +42,10 @@ namespace RuCollection.Commands
                 return false;
             }
 
-            player.Role.Set(PlayerRoles.RoleTypeId.ChaosRifleman, PlayerRoles.RoleSpawnFlags.None);
+            player.Role.Set(RoleTypeId.ChaosRifleman, RoleSpawnFlags.None);
 
             player.DisableEffect(Exiled.API.Enums.EffectType.Asphyxiated);
-            player.Health = (player.Role.Base as IHealthbarRole).MaxHealth;
+            player.Health = player.MaxHealth;
 
             response = "Вы успешно переоделись в повстанца хаоса";
             return true;

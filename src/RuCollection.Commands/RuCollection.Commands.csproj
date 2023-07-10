@@ -38,6 +38,7 @@
     <Reference Include="Mirror" HintPath="$(SL_REFERENCES)\Mirror.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Betray.cs" />
     <Compile Include="Commands\Hide.cs" />
     <Compile Include="Commands\Zombie.cs" />
     <Compile Include="Commands\Force.cs" />
