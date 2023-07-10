@@ -32,13 +32,13 @@ namespace RuCollection.API.Global
                         }
                     case CommandType.PlayerConsole:
                         {
-                            GameCore.Console.singleton.ConsoleCommandHandler.RegisterCommand(this);
+                            QueryProcessor.DotCommandHandler.RegisterCommand(this);
 
                             break;
                         }
                     case CommandType.ServerConsole:
                         {
-                            QueryProcessor.DotCommandHandler.RegisterCommand(this);
+                            GameCore.Console.singleton.ConsoleCommandHandler.RegisterCommand(this);
 
                             break;
                         }
