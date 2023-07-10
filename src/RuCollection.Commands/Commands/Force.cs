@@ -24,13 +24,6 @@ namespace RuCollection.Commands
             }
         }
 
-        ~Force()
-        {
-            _forced.Clear();
-
-            _forced = null;
-        }
-
         public string Command { get; } = "force";
 
         public string[] Aliases { get; } = Array.Empty<string>();
@@ -67,13 +60,13 @@ namespace RuCollection.Commands
                 return false;
             }
 
-            if (!Swap.AllowedScps.Contains(player.Role))
+            if (!(Swap.AllowedScps?.Contains(player.Role) ?? false))
             {
                 response = "Вы не подходите требованиям команды.";
                 return false;
             }
 
-            if (Swap.Prevent && _forced.TryGetValue(player, out bool forced) && forced)
+            if (Swap.Prevent && (_forced?.TryGetValue(player, out bool forced) ?? false) && forced)
             {
                 response = "Сменить роль можно лишь один раз.";
                 return false;
