@@ -1,6 +1,7 @@
 ﻿using CommandSystem;
 using Exiled.API.Features;
 using RuCollection.API;
+using RuCollection.API.Global;
 using RuCollection.API.Subclasses.Group;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using Random = UnityEngine.Random;
 namespace RuCollection.Commands
 {
     [CommandHandler(typeof(ClientCommandHandler))]
-    public sealed class Steal : ICommand
+    public sealed class Steal : ICommand, IHasData
     {
         private const string Spalili = "<line-height=95%><size=95%><voffset=-20em><color=#BC5D58>Вы услышали как что-то шуршит в ваших карманах... {0} выглядит подозрительным...</color></size></voffset>";
         private static List<ItemType> _banned;
@@ -142,6 +143,11 @@ namespace RuCollection.Commands
             }
 
             return true;
+        }
+
+        public void Reset()
+        {
+            _used.Clear();
         }
     }
 }

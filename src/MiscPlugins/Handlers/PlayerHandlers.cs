@@ -5,6 +5,7 @@ using Exiled.API.Features.Items;
 using Exiled.API.Features.Roles;
 using Exiled.Events.EventArgs.Player;
 using RuCollection.API;
+using RuCollection.API.Global;
 using RuCollection.API.Subclasses.Single;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,10 @@ using UnityEngine;
 
 namespace MiscPlugins.Handlers
 {
-    internal sealed class PlayerHandlers
+    internal sealed class PlayerHandlers : IHasData
     {
         private readonly string _weaponHintText;
         private readonly Dictionary<Player, System.DateTime> _painkillersUsed;
-
-        private int _activated = 0;
 
         public PlayerHandlers(string weaponHintText)
         {
@@ -176,14 +175,17 @@ namespace MiscPlugins.Handlers
                 return;
             }
 
-            _activated++;
-
             foreach (var ply in computers)
             {
-                ply.Role.As<Scp079Role>().AddExperience(40 * _activated, PlayerRoles.PlayableScps.Scp079.Scp079HudTranslation.YouAreBeingAttacked);
+                ply.Role.As<Scp079Role>().AddExperience(40 * Generator.List.Count(gen => gen.IsEngaged), PlayerRoles.PlayableScps.Scp079.Scp079HudTranslation.YouAreBeingAttacked);
             }
         }
 
         private static bool HasFlagFast(KeycardPermissions en1, KeycardPermissions en2) => (en1 & en2) == en2;
+
+        public void Reset()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

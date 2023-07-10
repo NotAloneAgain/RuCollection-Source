@@ -41,11 +41,14 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global\IHasData.cs" />
+    <Compile Include="Global\PluginWithData.cs" />
     <Compile Include="Methods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScpSwap\Swap.cs" />
     <Compile Include="Subclasses\Group\Bomber.cs" />
     <Compile Include="Subclasses\Group\Friendly.cs" />
+    <Compile Include="Subclasses\Single\AdminsLover.cs" />
     <Compile Include="Subclasses\Single\GuardCaptain.cs" />
     <Compile Include="Subclasses\Group\Informator.cs" />
     <Compile Include="Subclasses\Group\JuniorGuard.cs" />

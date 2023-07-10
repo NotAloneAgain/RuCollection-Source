@@ -3,6 +3,7 @@ using Exiled.API.Enums;
 using Exiled.API.Features;
 using MEC;
 using PlayerRoles;
+using RuCollection.API.Global;
 using RuCollection.API.ScpSwap;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Linq;
 namespace RuCollection.Commands
 {
     [CommandHandler(typeof(ClientCommandHandler))]
-    internal sealed class Force : ICommand
+    internal sealed class Force : ICommand, IHasData
     {
         private Dictionary<Player, bool> _forced;
 
@@ -121,6 +122,11 @@ namespace RuCollection.Commands
             player.SendConsoleMessage($"Желаем удачной игры за SCP-{role.ToString().Substring(3)}", "yellow");
 
             return true;
+        }
+
+        public void Reset()
+        {
+            _forced.Clear();
         }
     }
 }

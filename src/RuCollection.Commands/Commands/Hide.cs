@@ -2,6 +2,7 @@
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using RuCollection.API;
+using RuCollection.API.Global;
 using RuCollection.API.Subclasses.Group;
 using RuCollection.API.Subclasses.Single;
 using System;
@@ -12,7 +13,7 @@ using Random = UnityEngine.Random;
 namespace RuCollection.Commands
 {
     [CommandHandler(typeof(ClientCommandHandler))]
-    public sealed class Hide : ICommand
+    public sealed class Hide : ICommand, IHasData
     {
         private static Dictionary<Player, DateTime> _used;
 
@@ -72,6 +73,11 @@ namespace RuCollection.Commands
 
             response = "Успешно!";
             return true;
+        }
+
+        public void Reset()
+        {
+            _used.Clear();
         }
     }
 }

@@ -26,6 +26,6 @@ namespace RuCollection.API.Subclasses.Single
 
         public override bool Show { get; } = true;
 
-        public override Vector3 Size { get; } = Vector3.one * 0.44f;
+        public override Vector3 Size { get; } = Vector3.one * 0.77f;
     }
 }

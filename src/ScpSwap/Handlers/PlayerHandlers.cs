@@ -18,7 +18,7 @@ namespace ScpSwap.Handlers
 
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            if (ev.Reason != SpawnReason.RoundStart || ev.NewRole.GetTeam() != PlayerRoles.Team.SCPs)
+            if (ev.Reason is not SpawnReason.RoundStart and not SpawnReason.LateJoin || ev.NewRole.GetTeam() != PlayerRoles.Team.SCPs)
             {
                 return;
             }
