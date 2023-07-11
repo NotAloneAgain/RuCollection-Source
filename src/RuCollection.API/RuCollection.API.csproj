@@ -39,9 +39,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global\CommandType.cs" />
+    <Compile Include="Global\CommandWithCooldown.cs" />
     <Compile Include="Global\CommandWithData.cs" />
     <Compile Include="Global\CustomCommand.cs" />
     <Compile Include="Global\IHasData.cs" />
+    <Compile Include="Global\ObservableCommand.cs" />
     <Compile Include="Global\PluginWithData.cs" />
     <Compile Include="Global\StringConstants.cs" />
     <Compile Include="Methods.cs" />

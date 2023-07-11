@@ -1,4 +1,5 @@
 ﻿using Exiled.API.Features;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RuCollection.API
@@ -35,7 +36,9 @@ namespace RuCollection.API
             }
         }
 
-        public static string GetSecondsString(this double seconds)
+        public static string GetSecondsString(this double seconds) => Mathf.RoundToInt((float)seconds).GetSecondsString();
+
+        public static string GetSecondsString(this int seconds)
         {
             int secondsInt = (int)seconds;
 
@@ -48,6 +51,18 @@ namespace RuCollection.API
             };
 
             return secondsInt.ToString() + " " + secondsString;
+        }
+
+        public static void SetOrAdd<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key, TValue element)
+        {
+            if (dictionary.ContainsKey(key))
+            {
+                dictionary[key] = element;
+
+                return;
+            }
+
+            dictionary.Add(key, element);
         }
     }
 }

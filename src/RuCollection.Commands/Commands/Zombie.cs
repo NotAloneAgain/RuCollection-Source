@@ -23,17 +23,16 @@ namespace RuCollection.Commands
 
         public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
+            if (!base.Execute(arguments, sender, out response))
+            {
+                return false;
+            }
+
             Player player = Player.Get(sender);
 
             if (player == null)
             {
                 response = "Не получилось найти данные игрока, использующего команду.";
-                return false;
-            }
-
-            if (arguments.Count != 0)
-            {
-                response = "Синтаксис команды: .zombie";
                 return false;
             }
 

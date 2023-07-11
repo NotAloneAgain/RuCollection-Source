@@ -19,8 +19,17 @@ namespace RuCollection.Commands
 
         public override List<CommandType> Types { get; } = new List<CommandType>(3) { CommandType.PlayerConsole, CommandType.RemoteAdmin, CommandType.ServerConsole };
 
+        public override int MaxArguments { get; } = 4;
+
+        public override string UsingExample { get; } = "[PlayerId/0/me/all] [3D Vector]";
+
         public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
+            if (!base.Execute(arguments, sender, out response))
+            {
+                return false;
+            }
+
             Player player = Player.Get(sender);
 
             if (player == null)
@@ -34,17 +43,6 @@ namespace RuCollection.Commands
             if (!isGod && !player.RemoteAdminAccess)
             {
                 response = "Ты не можешь использовать эту команду!";
-                return false;
-            }
-
-            if (arguments.Count is not 4)
-            {
-                response = isGod switch
-                {
-                    true => "Синтаксис команды: .size 0 размеры в формате координат x y z.\nПример: .size 0 1 -0.5 1",
-                    false => "Синтаксис команды: .size Player x y z",
-                };
-
                 return false;
             }
 

@@ -1,5 +1,4 @@
 ﻿using CommandSystem;
-using PluginAPI.Commands;
 using RemoteAdmin;
 using System;
 using System.Collections.Generic;
@@ -16,7 +15,23 @@ namespace RuCollection.API.Global
 
         public abstract List<CommandType> Types { get; }
 
-        public abstract bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response);
+        public virtual int MaxArguments { get; } = 0;
+
+        public virtual string UsingExample { get; } = string.Empty;
+
+        public virtual bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        {
+            if (arguments.Count != MaxArguments)
+            {
+                response = GetSyntax();
+                return false;
+            }
+
+            response = "Успешно!";
+            return true;
+        }
+
+        public virtual string GetSyntax() => $"Синтаксис команды: .{Command} {UsingExample}";
 
         public void Subscribe()
         {

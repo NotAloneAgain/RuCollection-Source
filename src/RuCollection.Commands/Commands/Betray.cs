@@ -20,9 +20,8 @@ namespace RuCollection.Commands
 
         public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (arguments.Count is not 0)
+            if (!base.Execute(arguments, sender, out response))
             {
-                response = "Синтаксис команды: .betray";
                 return false;
             }
 

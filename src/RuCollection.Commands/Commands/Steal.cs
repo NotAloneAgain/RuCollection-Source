@@ -10,10 +10,9 @@ using Random = UnityEngine.Random;
 
 namespace RuCollection.Commands
 {
-    public sealed class Steal : CommandWithData
+    public sealed class Steal : CommandWithCooldown
     {
         private static List<ItemType> _banned;
-        private static Dictionary<Player, DateTime> _used;
 
         static Steal()
         {
@@ -33,8 +32,6 @@ namespace RuCollection.Commands
                  ItemType.SCP244a,
                  ItemType.SCP244b
             };
-
-            _used = new();
         }
 
         public override string Command { get; } = "steal";
@@ -45,8 +42,15 @@ namespace RuCollection.Commands
 
         public override List<CommandType> Types { get; } = new List<CommandType>(1) { CommandType.PlayerConsole };
 
+        public override int Cooldown { get; } = 30;
+
         public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
+            if (!base.Execute(arguments, sender, out response))
+            {
+                return false;
+            }
+
             Player player = Player.Get(sender);
 
             if (player == null)
@@ -61,12 +65,6 @@ namespace RuCollection.Commands
             if (!isThief && !isPickpocket || player.IsCuffed || player.IsInventoryFull)
             {
                 response = "Ты не можешь использовать эту команду!";
-                return false;
-            }
-
-            if (arguments.Count is not 0)
-            {
-                response = "Синтаксис команды: .steal";
                 return false;
             }
 
@@ -98,25 +96,6 @@ namespace RuCollection.Commands
                 _ => 88
             };
 
-            var now = DateTime.Now;
-
-            if (_used.TryGetValue(player, out var time))
-            {
-                double seconds = (now - time).TotalSeconds;
-
-                if (seconds <= 30)
-                {
-                    response = $"Вам осталось ждать {(30 - seconds).GetSecondsString()} до следующей попытки.";
-                    return false;
-                }
-
-                _used[player] = now;
-            }
-            else
-            {
-                _used.Add(player, DateTime.Now);
-            }
-
             if (Random.Range(0, 101) >= failureChance)
             {
                 response = "Мням, спиздец не удалось, нам пиздец. Быстрые ноги пизды не получааааааааааааааааааааааааааааат....";
@@ -143,11 +122,6 @@ namespace RuCollection.Commands
             }
 
             return true;
-        }
-
-        public override void Reset()
-        {
-            _used.Clear();
         }
     }
 }

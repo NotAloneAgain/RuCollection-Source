@@ -28,11 +28,14 @@ namespace RuCollection.Commands
 
         public override List<CommandType> Types { get; } = new List<CommandType>(1) { CommandType.PlayerConsole };
 
+        public override int MaxArguments { get; } = 1;
+
+        public override string UsingExample { get; } = "[Номер]";
+
         public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (arguments.Count != 1)
+            if (!base.Execute(arguments, sender, out response))
             {
-                response = "Синтаксис команды: .force [Номер]";
                 return false;
             }
 

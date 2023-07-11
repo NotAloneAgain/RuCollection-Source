@@ -18,8 +18,17 @@ namespace RuCollection.Commands
 
         public override List<CommandType> Types { get; } = new List<CommandType>(1) { CommandType.PlayerConsole };
 
+        public override int MaxArguments { get; } = 1;
+
+        public override string UsingExample { get; } = "[ID]";
+
         public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
+            if (!base.Execute(arguments, sender, out response))
+            {
+                return false;
+            }
+
             Player player = Player.Get(sender);
 
             if (player == null)
@@ -36,9 +45,9 @@ namespace RuCollection.Commands
                 return false;
             }
 
-            if (arguments.Count != 1 || !int.TryParse(arguments.At(0), out int id))
+            if (!int.TryParse(arguments.At(0), out int id))
             {
-                response = "Синтаксис команды: .item [ID]";
+                response = GetSyntax();
                 return false;
             }
 
