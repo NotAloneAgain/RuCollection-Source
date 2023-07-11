@@ -79,7 +79,7 @@ namespace Subclasses.Handlers
 
                     _hasSubclass.Add(ev.Player);
 
-                    var items = subclass.Key.Inventory.Items;
+                    var items = subclass.Key?.Inventory?.Items;
 
                     if (items == null || items.Count == 0 || ev.Items == null)
                     {
