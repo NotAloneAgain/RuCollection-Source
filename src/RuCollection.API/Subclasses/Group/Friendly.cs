@@ -41,9 +41,7 @@ namespace RuCollection.API.Subclasses.Group
         {
             base.Assign(player);
 
-            Vector3 pos = Room.List.First(x => x.Type == RoomType.LczCafe).Position + Vector3.up;
-
-            Timing.CallDelayed(0.0005f, () => player.Teleport(pos));
+            Timing.CallDelayed(0.0005f, () => player.Teleport(RoomType.LczCafe));
         }
     }
 }

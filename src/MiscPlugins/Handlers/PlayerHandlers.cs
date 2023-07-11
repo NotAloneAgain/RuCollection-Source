@@ -13,15 +13,13 @@ using UnityEngine;
 
 namespace MiscPlugins.Handlers
 {
-    internal sealed class PlayerHandlers : IHasData
+    internal sealed class PlayerHandlers
     {
         private readonly string _weaponHintText;
-        private readonly Dictionary<Player, System.DateTime> _painkillersUsed;
 
         public PlayerHandlers(string weaponHintText)
         {
             _weaponHintText = weaponHintText;
-            _painkillersUsed = new(50);
         }
 
         public void OnInteractingDoor(InteractingDoorEventArgs ev) => ev.IsAllowed
@@ -101,11 +99,6 @@ namespace MiscPlugins.Handlers
             {
                 ev.Player.EnableEffect(EffectType.Bleeding, 6, true);
             }
-
-            if (_painkillersUsed.TryGetValue(ev.Player, out var time) && (System.DateTime.Now - time).TotalSeconds <= 120 && ev.DamageHandler.Type is DamageType.Falldown or DamageType.Bleeding or DamageType.Explosion or DamageType.Scp or DamageType.Scp018 or DamageType.Scp207 or DamageType.Firearm)
-            {
-                ev.Amount *= 0.9f;
-            }
         }
 
         public void OnDying(DyingEventArgs ev)
@@ -143,14 +136,7 @@ namespace MiscPlugins.Handlers
         {
             if (ev.Item.Type == ItemType.Painkillers)
             {
-                if (!_painkillersUsed.ContainsKey(ev.Player))
-                {
-                    _painkillersUsed.Add(ev.Player, System.DateTime.Now);
-                }
-                else
-                {
-                    _painkillersUsed[ev.Player] = System.DateTime.Now;
-                }
+                ev.Player.GetEffect(EffectType.DamageReduction)?.ServerSetState(20, 120, true);
             }
 
             if (ev.Item.Type == ItemType.SCP500)
@@ -183,10 +169,5 @@ namespace MiscPlugins.Handlers
         }
 
         private static bool HasFlagFast(KeycardPermissions en1, KeycardPermissions en2) => (en1 & en2) == en2;
-
-        public void Reset()
-        {
-            _painkillersUsed.Clear();
-        }
     }
 }

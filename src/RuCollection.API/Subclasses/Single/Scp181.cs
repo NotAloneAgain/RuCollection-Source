@@ -38,7 +38,8 @@ namespace RuCollection.API.Subclasses.Single
         {
             base.Assign(player);
 
-            player.GetEffect(EffectType.MovementBoost).ServerSetState(4, 0, false);
+            player.GetEffect(EffectType.MovementBoost)?.ServerSetState(4, 0, false);
+            player.GetEffect(EffectType.DamageReduction)?.ServerSetState(20, 0, false);
 
             string message = "\n\t\t+ У тебя есть:" +
                 "\n\t- Шанс в 4% открыть дверь, к которой доступа не имеешь из-за сбоев в комплексе." +
@@ -54,27 +55,15 @@ namespace RuCollection.API.Subclasses.Single
             base.Subscribe();
 
             Exiled.Events.Handlers.Player.Dying += OnDying;
-            Exiled.Events.Handlers.Player.Hurting += OnHurting;
             Exiled.Events.Handlers.Player.InteractingDoor += OnInteractingDoor;
         }
 
         public override void Unsubscribe()
         {
-            Exiled.Events.Handlers.Player.Hurting -= OnHurting;
             Exiled.Events.Handlers.Player.Dying -= OnDying;
             Exiled.Events.Handlers.Player.InteractingDoor -= OnInteractingDoor;
 
             base.Unsubscribe();
-        }
-
-        private void OnHurting(HurtingEventArgs ev)
-        {
-            if (ev.Player != Player || ev.DamageHandler.Type is DamageType.Unknown or DamageType.Falldown or DamageType.Warhead or DamageType.Decontamination or DamageType.Recontainment or DamageType.Crushed or DamageType.FemurBreaker or DamageType.PocketDimension or DamageType.SeveredHands)
-            {
-                return;
-            }
-
-            ev.Amount *= 0.9f;
         }
 
         private void OnDying(DyingEventArgs ev)

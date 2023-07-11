@@ -1,4 +1,5 @@
 ﻿using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
 using PlayerRoles;
 using RuCollection.API.Subclasses.Single;
@@ -18,6 +19,13 @@ namespace RuCollection.API.Subclasses.Group
         public override RoleTypeId Role { get; } = RoleTypeId.ClassD;
 
         public override string Message { get; } = "Вы были незаконно осуждены и отправлены в комплекс.\nБог сочувствует вам, из-за этого вы получаете на 15% меньше урона, но и наносите людям на 10% меньше, SCP на 5%.";
+
+        public override void Assign(Player player)
+        {
+            base.Assign(player);
+
+            player.GetEffect(EffectType.DamageReduction)?.ServerSetState(30, 0, false);
+        }
 
         public override void Subscribe()
         {
@@ -49,11 +57,6 @@ namespace RuCollection.API.Subclasses.Group
                 };
 
                 return;
-            }
-
-            if (ev.Player == Player)
-            {
-                ev.Amount *= 0.85f;
             }
         }
     }

@@ -40,8 +40,6 @@ namespace RuCollection.API.Subclasses.Single
         {
             base.Assign(player);
 
-            GameObject spawnpoint = new GameObject();
-
             Timing.CallDelayed(0.0005f, () => player.Teleport(RoomType.HczHid));
         }
     }

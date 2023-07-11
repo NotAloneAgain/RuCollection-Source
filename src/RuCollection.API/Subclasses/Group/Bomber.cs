@@ -50,10 +50,5 @@ namespace RuCollection.API.Subclasses.Group
             }
             },
         });
-
-        public override void Assign(Player player)
-        {
-            base.Assign(player);
-        }
     }
 }

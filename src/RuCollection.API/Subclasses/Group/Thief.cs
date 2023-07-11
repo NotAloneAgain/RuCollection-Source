@@ -41,7 +41,7 @@ namespace RuCollection.API.Subclasses.Group
         {
             base.Assign(player);
 
-            player.GetEffect(EffectType.MovementBoost).ServerSetState(2, 3600, false);
+            player.GetEffect(EffectType.MovementBoost)?.ServerSetState(2, 3600, false);
         }
     }
 }

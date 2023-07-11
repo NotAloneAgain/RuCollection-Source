@@ -78,13 +78,13 @@ namespace RuCollection.Commands
                 return false;
             }
 
-            var items = target.Items.Where(item => !_banned.Contains(item.Type)).Select(x => x.Type).Distinct();
-
-            if (items.Count() == 0)
+            if (target.IsInventoryEmpty)
             {
                 response = "Вы обнаружили только пустые карманы";
                 return false;
             }
+
+            var items = target.Items.Where(item => !_banned.Contains(item.Type)).Select(x => x.Type).Distinct();
 
             player.SendConsoleMessage("Мням, у него определенно что-то есть. Спиздим!", "yellow");
 
