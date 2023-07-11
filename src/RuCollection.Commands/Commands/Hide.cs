@@ -27,13 +27,7 @@ namespace RuCollection.Commands
                 return false;
             }
 
-            Player player = Player.Get(sender);
-
-            if (player == null)
-            {
-                response = "Не получилось найти данные игрока, использующего команду.";
-                return false;
-            }
+            Player player = Executor;
 
             if (Hidden.Singleton.Player != player)
             {

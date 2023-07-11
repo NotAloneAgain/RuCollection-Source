@@ -9,6 +9,8 @@ namespace RuCollection.API.Subclasses
 {
     public abstract class SubclassBase
     {
+        protected bool _loaded;
+
         public abstract string Name { get; }
 
         public abstract RoleTypeId Role { get; }
@@ -29,16 +31,32 @@ namespace RuCollection.API.Subclasses
 
         public virtual void Init(Player player)
         {
+            if (_loaded)
+            {
+                Assign(player);
+
+                return;
+            }
+
             Subscribe();
 
             Assign(player);
+
+            _loaded = true;
         }
 
         public virtual void Destroy(Player player)
         {
+            if (!_loaded)
+            {
+                return;
+            }
+
             Deassign(player);
 
             Unsubscribe();
+
+            _loaded = false;
         }
 
         public virtual void Assign(Player player)

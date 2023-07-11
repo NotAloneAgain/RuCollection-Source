@@ -51,13 +51,7 @@ namespace RuCollection.Commands
                 return false;
             }
 
-            Player player = Player.Get(sender);
-
-            if (player == null)
-            {
-                response = "Не получилось найти данные игрока, использующего команду.";
-                return false;
-            }
+            Player player = Executor;
 
             bool isThief = Thief.Singleton.Players.Contains(player);
             bool isPickpocket = Pickpocket.Singleton.Players.Contains(player);

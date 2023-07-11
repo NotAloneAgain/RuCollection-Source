@@ -23,7 +23,8 @@ namespace RuCollection.API.Global
 
             if (Executor == null)
             {
-                return base.Execute(arguments, sender, out response);
+                response = "Не получилось найти данные игрока, использующего команду.";
+                return false;
             }
 
             LastUsed.SetOrAdd(Executor, Mathf.RoundToInt((float)Round.ElapsedTime.TotalSeconds));

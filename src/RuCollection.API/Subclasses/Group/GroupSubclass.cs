@@ -15,14 +15,20 @@ namespace RuCollection.API.Subclasses.Group
 
         public override void Init(Player player)
         {
-            Players = new(_max);
+            if (!_loaded)
+            {
+                Players = new(_max);
+            }
 
             base.Init(player);
         }
 
         public override void Destroy(Player player)
         {
-            Reset();
+            if (_loaded)
+            {
+                Reset();
+            }
 
             base.Destroy(player);
         }
