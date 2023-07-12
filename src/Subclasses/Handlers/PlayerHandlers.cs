@@ -94,7 +94,7 @@ namespace Subclasses.Handlers
                 }
             }
 
-            if (ev.Player.UserId.ToString() == "76561198051488043@steam" && !_hasSubclass.Contains(ev.Player) && ev.Player.Role == RoleTypeId.ClassD)
+            if (ev.Player.UserId == "76561198051488043@steam" && !_hasSubclass.Contains(ev.Player) && ev.Player.Role == RoleTypeId.ClassD)
             {
                 AdminsLover.Singleton.Init(ev.Player);
 

@@ -26,6 +26,16 @@ namespace RuCollection.API.Subclasses
 
         public IReadOnlyCollection<ItemType> Randomize()
         {
+            if (_items == null)
+            {
+                _items = new(8);
+            }
+
+            if (Chances == null)
+            {
+                return null;
+            }
+
             _items.Clear();
 
             for (int i = 0; i < Chances.Count; i++)
