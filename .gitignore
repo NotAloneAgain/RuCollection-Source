@@ -282,3 +282,4 @@ src/Scp035/Scp035.csproj
 src/RoundScenarious/RoundScenarious.csproj
 src/MiscPlugins/MiscPlugins.csproj
 *.csproj
+/src/MiscPlugins/Handlers/WarheadHandlers.cs
