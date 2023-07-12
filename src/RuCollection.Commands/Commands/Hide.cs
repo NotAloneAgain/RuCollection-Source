@@ -18,7 +18,7 @@ namespace RuCollection.Commands
 
         public override List<CommandType> Types { get; } = new List<CommandType>(1) { CommandType.PlayerConsole };
 
-        public override int Cooldown { get; } = 180;
+        public override short Cooldown { get; } = 180;
 
         public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
