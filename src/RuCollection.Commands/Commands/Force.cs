@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace RuCollection.Commands
 {
-    internal sealed class Force : ObservableCommand
+    internal sealed class Force : ObservableCommand<bool>
     {
         public override string Command { get; } = "force";
 
@@ -54,7 +54,7 @@ namespace RuCollection.Commands
                 return false;
             }
 
-            if (Swap.Prevent && LastUsed.TryGetValue(player, out _))
+            if (Swap.Prevent && LastUsed.ContainsKey(player))
             {
                 response = "Сменить роль можно лишь один раз.";
                 return false;
@@ -97,5 +97,7 @@ namespace RuCollection.Commands
 
             return true;
         }
+
+        public override bool GetValue() => true;
     }
 }

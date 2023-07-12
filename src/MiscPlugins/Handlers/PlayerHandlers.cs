@@ -5,9 +5,7 @@ using Exiled.API.Features.Items;
 using Exiled.API.Features.Roles;
 using Exiled.Events.EventArgs.Player;
 using RuCollection.API;
-using RuCollection.API.Global;
 using RuCollection.API.Subclasses.Single;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -116,6 +114,8 @@ namespace MiscPlugins.Handlers
                 ev.Player.DropAllWithoutKeycard();
 
                 ev.Player.Role.Set(PlayerRoles.RoleTypeId.Scp0492, SpawnReason.Died, PlayerRoles.RoleSpawnFlags.None);
+
+                return;
             }
         }
 

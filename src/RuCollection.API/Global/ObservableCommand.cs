@@ -6,14 +6,14 @@ using UnityEngine;
 
 namespace RuCollection.API.Global
 {
-    public abstract class ObservableCommand : CommandWithData
+    public abstract class ObservableCommand<TObject> : CommandWithData
     {
         static ObservableCommand()
         {
             LastUsed = new(Server.MaxPlayerCount);
         }
 
-        public static Dictionary<Player, int> LastUsed { get; }
+        public static Dictionary<Player, TObject> LastUsed { get; }
 
         public Player Executor { get; private set; }
 
@@ -27,10 +27,12 @@ namespace RuCollection.API.Global
                 return false;
             }
 
-            LastUsed.SetOrAdd(Executor, Mathf.RoundToInt((float)Round.ElapsedTime.TotalSeconds));
+            LastUsed.SetOrAdd(Executor, GetValue());
 
             return base.Execute(arguments, sender, out response);
         }
+
+        public abstract TObject GetValue();
 
         public override void Reset()
         {

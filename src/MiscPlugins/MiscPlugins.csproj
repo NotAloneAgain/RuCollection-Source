@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Configs\Config.cs" />
     <Compile Include="Handlers\PlayerHandlers.cs" />
+    <Compile Include="Handlers\ServerHandlers.cs" />
+    <Compile Include="Handlers\WarheadHandlers.cs" />
     <Compile Include="Patches\InfinityAmmoTranspiler.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

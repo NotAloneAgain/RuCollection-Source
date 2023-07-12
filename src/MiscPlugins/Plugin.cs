@@ -7,12 +7,14 @@ using System;
 
 namespace MiscPlugins
 {
-    public sealed class Plugin : Exiled.API.Features.Plugin<Config>
+    public sealed class Plugin : PluginWithData<Config>
     {
         private const string HarmonyId = "Ray-Grey.RoundScenarious";
 
         private Harmony _harmony;
         private PlayerHandlers _playerHandlers;
+        private ServerHandlers _serverHandlers;
+        private WarheadHandlers _warheadHandlers;
 
         public override string Name => "MiscPlugins";
 
@@ -25,7 +27,9 @@ namespace MiscPlugins
         public override void OnEnabled()
         {
             _harmony = new(HarmonyId);
+            _serverHandlers = new();
             _playerHandlers = new(Config.WeaponHintText);
+            _warheadHandlers = new();
 
             _harmony.PatchAll(GetType().Assembly);
 
@@ -41,11 +45,19 @@ namespace MiscPlugins
             Player.UnlockingGenerator += _playerHandlers.OnUnlockingGenerator;
             Player.ActivatingGenerator += _playerHandlers.OnActivatingGenerator;
 
+            Server.RoundStarted += _serverHandlers.OnRoundStarted;
+
+            Warhead.Detonated += _warheadHandlers.OnDetonated;
+
             base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
+            Warhead.Detonated -= _warheadHandlers.OnDetonated;
+
+            Server.RoundStarted -= _serverHandlers.OnRoundStarted;
+
             Player.ActivatingGenerator -= _playerHandlers.OnActivatingGenerator;
             Player.UnlockingGenerator -= _playerHandlers.OnUnlockingGenerator;
             Player.InteractingLocker -= _playerHandlers.OnInteractingLocker;
@@ -71,5 +83,10 @@ namespace MiscPlugins
         public override void OnRegisteringCommands() { }
 
         public override void OnUnregisteringCommands() { }
+
+        public override void Reset()
+        {
+            _serverHandlers?.Reset();
+        }
     }
 }

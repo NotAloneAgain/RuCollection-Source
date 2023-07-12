@@ -1,10 +1,11 @@
 ﻿using CommandSystem;
 using Exiled.API.Features;
 using System;
+using UnityEngine;
 
 namespace RuCollection.API.Global
 {
-    public abstract class CommandWithCooldown : ObservableCommand
+    public abstract class CommandWithCooldown : ObservableCommand<int>
     {
         public abstract short Cooldown { get; }
 
@@ -25,5 +26,7 @@ namespace RuCollection.API.Global
 
             return true;
         }
+
+        public override int GetValue() => Mathf.RoundToInt((float) Round.ElapsedTime.TotalSeconds);
     }
 }
