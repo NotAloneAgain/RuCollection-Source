@@ -11,15 +11,8 @@ using System.Linq;
 
 namespace RuCollection.Commands
 {
-    internal sealed class Force : CommandWithData
+    internal sealed class Force : ObservableCommand
     {
-        private static Dictionary<Player, bool> _forced;
-
-        static Force()
-        {
-            _forced = new(8);
-        }
-
         public override string Command { get; } = "force";
 
         public override string[] Aliases { get; } = Array.Empty<string>();
@@ -39,13 +32,7 @@ namespace RuCollection.Commands
                 return false;
             }
 
-            Player player = Player.Get(sender);
-
-            if (player == null)
-            {
-                response = "Не получилось найти данные игрока, использующего команду.";
-                return false;
-            }
+            Player player = Executor;
 
             string number = arguments.At(0);
 
@@ -67,7 +54,7 @@ namespace RuCollection.Commands
                 return false;
             }
 
-            if (Swap.Prevent && (_forced?.TryGetValue(player, out bool forced) ?? false) && forced)
+            if (Swap.Prevent && LastUsed.TryGetValue(player, out _))
             {
                 response = "Сменить роль можно лишь один раз.";
                 return false;
@@ -98,7 +85,7 @@ namespace RuCollection.Commands
 
             if (role == player.Role.Type)
             {
-                response = "Вы и так данный SCP";
+                response = "Вы и так данный SCP/";
                 return false;
             }
 
@@ -106,21 +93,9 @@ namespace RuCollection.Commands
 
             response = "Вы сменили свой SCP-Объект!";
 
-            _forced.Add(player, true);
-
-            Timing.CallDelayed((float)(Swap.SwapDuration - Round.ElapsedTime.TotalSeconds), delegate
-            {
-                _forced.Remove(player);
-            });
-
-            player.SendConsoleMessage($"Желаем удачной игры за SCP-{role.ToString().Substring(3)}", "yellow");
+            player.ShowHint($"<i><color=#FF9500>Желаем удачной игры за SCP-{role.ToString().Substring(3)}!</color></i>", 6);
 
             return true;
-        }
-
-        public override void Reset()
-        {
-            _forced.Clear();
         }
     }
 }
