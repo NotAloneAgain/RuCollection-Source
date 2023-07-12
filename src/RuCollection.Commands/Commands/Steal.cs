@@ -53,10 +53,11 @@ namespace RuCollection.Commands
 
             Player player = Executor;
 
-            bool isThief = Thief.Singleton.Players.Contains(player);
-            bool isPickpocket = Pickpocket.Singleton.Players.Contains(player);
+            bool isThief = Thief.Singleton.Players?.Contains(player) ?? false;
+            bool isPickpocket = Pickpocket.Singleton.Players?.Contains(player) ?? false;
+            bool isSubclassed = isThief || isPickpocket;
 
-            if (!isThief && !isPickpocket || player.IsCuffed || player.IsInventoryFull)
+            if (!isSubclassed || player.IsCuffed || player.IsInventoryFull)
             {
                 response = "Ты не можешь использовать эту команду!";
                 return false;
@@ -77,6 +78,12 @@ namespace RuCollection.Commands
             }
 
             var items = target.Items.Where(item => !_banned.Contains(item.Type)).Select(x => x.Type).Distinct();
+
+            if (items.Count() == 0)
+            {
+                response = "Вы не обнаружили предметы, которые можете украсть.";
+                return false;
+            }
 
             player.SendConsoleMessage("Мням, у него определенно что-то есть. Спиздим!", "yellow");
 

@@ -44,7 +44,7 @@ namespace MiscPlugins.Handlers
                     item.Destroy();
                 }
 
-                Timing.WaitForSeconds(240);
+                yield return Timing.WaitForSeconds(240);
             }
         }
 
@@ -66,7 +66,7 @@ namespace MiscPlugins.Handlers
                     ragdoll.Destroy();
                 }
 
-                Timing.WaitForSeconds(120);
+                yield return Timing.WaitForSeconds(120);
             }
         }
 

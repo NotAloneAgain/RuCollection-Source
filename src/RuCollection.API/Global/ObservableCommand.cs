@@ -17,6 +17,8 @@ namespace RuCollection.API.Global
 
         public Player Executor { get; private set; }
 
+        public virtual bool RewriteLast { get; } = true;
+
         public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Executor = Player.Get(sender);
@@ -27,7 +29,7 @@ namespace RuCollection.API.Global
                 return false;
             }
 
-            LastUsed.SetOrAdd(Executor, GetValue());
+            LastUsed.SetOrAdd(Executor, GetValue(), RewriteLast);
 
             return base.Execute(arguments, sender, out response);
         }

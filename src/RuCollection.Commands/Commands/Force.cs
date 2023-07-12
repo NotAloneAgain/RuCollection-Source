@@ -25,6 +25,8 @@ namespace RuCollection.Commands
 
         public override string UsingExample { get; } = "[Номер]";
 
+        public override bool RewriteLast { get; } = false;
+
         public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (!base.Execute(arguments, sender, out response))
@@ -54,7 +56,7 @@ namespace RuCollection.Commands
                 return false;
             }
 
-            if (Swap.Prevent && LastUsed.ContainsKey(player))
+            if (Swap.Prevent && LastUsed.TryGetValue(player, out bool value) && value)
             {
                 response = "Сменить роль можно лишь один раз.";
                 return false;
@@ -93,11 +95,13 @@ namespace RuCollection.Commands
 
             response = "Вы сменили свой SCP-Объект!";
 
-            player.ShowHint($"<i><color=#FF9500>Желаем удачной игры за SCP-{role.ToString().Substring(3)}!</color></i>", 6);
+            player.ShowHint($"<line-height=95%><size=95%><voffset=-20em><b><color=#FF9500>Желаем удачной игры за SCP-{role.ToString().Substring(3)}!</color></b></voffset></size>", 6);
+
+            LastUsed[player] = true;
 
             return true;
         }
 
-        public override bool GetValue() => true;
+        public override bool GetValue() => false;
     }
 }

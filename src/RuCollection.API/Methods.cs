@@ -53,11 +53,14 @@ namespace RuCollection.API
             return secondsInt.ToString() + " " + secondsString;
         }
 
-        public static void SetOrAdd<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key, TValue element)
+        public static void SetOrAdd<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key, TValue element, bool rewrite)
         {
             if (dictionary.ContainsKey(key))
             {
-                dictionary[key] = element;
+                if (rewrite)
+                {
+                    dictionary[key] = element;
+                }
 
                 return;
             }

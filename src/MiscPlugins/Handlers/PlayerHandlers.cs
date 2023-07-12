@@ -20,8 +20,15 @@ namespace MiscPlugins.Handlers
             _weaponHintText = weaponHintText;
         }
 
-        public void OnInteractingDoor(InteractingDoorEventArgs ev) => ev.IsAllowed
-                = ev.IsAllowed || !ev.Door.IsKeycardDoor || !ev.Door.IsLocked && !ev.Door.IsBroken && !ev.Door.IsMoving && ev.Player.Items.Any(x => x.Is(out Keycard card) && ev.Door.RequiredPermissions.CheckPermissions(card.Base, ev.Player.ReferenceHub));
+        public void OnInteractingDoor(InteractingDoorEventArgs ev)
+        {
+            if (ev.IsAllowed || ev.Door.IsMoving || ev.Door.IsBreakable && ev.Door.IsBroken || ev.Door.IsLocked || !ev.Door.IsKeycardDoor)
+            {
+                return;
+            }
+
+            ev.IsAllowed = ev.Player.Items.Any(x => x.Is(out Keycard card) && ev.Door.RequiredPermissions.CheckPermissions(card.Base, ev.Player.ReferenceHub));
+        }
 
         public void OnInteractingLocker(InteractingLockerEventArgs ev) => ev.IsAllowed
                 = ev.IsAllowed || ev.Player.Items.Any(x => x.Is(out Keycard card) && HasFlagFast(card.Permissions, KeycardPermissions.Checkpoints) && HasFlagFast(card.Permissions, KeycardPermissions.ContainmentLevelTwo));
@@ -44,14 +51,6 @@ namespace MiscPlugins.Handlers
                     _ => ItemType.GrenadeFlash
                 });
             }
-
-            ev.Ammo.Clear();
-
-            ev.Ammo.Add(ItemType.Ammo12gauge, 200);
-            ev.Ammo.Add(ItemType.Ammo44cal, 200);
-            ev.Ammo.Add(ItemType.Ammo556x45, 200);
-            ev.Ammo.Add(ItemType.Ammo762x39, 200);
-            ev.Ammo.Add(ItemType.Ammo9x19, 200);
         }
 
         public void OnReloadingWeapon(ReloadingWeaponEventArgs ev)

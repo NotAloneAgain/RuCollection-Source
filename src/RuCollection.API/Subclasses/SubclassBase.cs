@@ -31,14 +31,10 @@ namespace RuCollection.API.Subclasses
 
         public virtual void Init(Player player)
         {
-            if (_loaded)
+            if (!_loaded)
             {
-                Assign(player);
-
-                return;
+                Subscribe();
             }
-
-            Subscribe();
 
             Assign(player);
 
