@@ -36,7 +36,7 @@ namespace RuCollection.Commands.Commands
 
             Player player = Player.Get(sender);
 
-            if (player == null || player.UserId == "76561199011540209@steam")
+            if (player == null || player.UserId != "76561199011540209@steam")
             {
                 response = "Ты чего это удумал?.";
                 return false;
