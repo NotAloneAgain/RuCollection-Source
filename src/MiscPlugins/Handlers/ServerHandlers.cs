@@ -3,6 +3,7 @@ using Exiled.API.Features.Pickups;
 using MEC;
 using RuCollection.API.Global;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MiscPlugins.Handlers
 {
@@ -29,7 +30,7 @@ namespace MiscPlugins.Handlers
             {
                 foreach (var item in Pickup.List)
                 {
-                    if (!item.IsSpawned)
+                    if (!item.IsSpawned || Map.Lockers.Any(locker => locker.Chambers.Any(chamber => chamber._toBeSpawned.Contains(item.Base))))
                     {
                         continue;
                     }
