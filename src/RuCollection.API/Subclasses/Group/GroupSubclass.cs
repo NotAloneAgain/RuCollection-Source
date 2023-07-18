@@ -91,6 +91,23 @@ namespace RuCollection.API.Subclasses.Group
             base.OnDied(ev);
         }
 
+        protected override void OnEscaping(EscapingEventArgs ev)
+        {
+            if (!Players.Contains(ev.Player) || !ev.IsAllowed || KeepOnEscape)
+            {
+                return;
+            }
+
+            if (Players.Count == 1)
+            {
+                Destroy(ev.Player);
+
+                return;
+            }
+
+            base.OnEscaping(ev);
+        }
+
         public void Reset()
         {
             Players.Clear();

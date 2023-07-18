@@ -1,5 +1,6 @@
 ﻿using CommandSystem;
 using RuCollection.API.Global;
+using RuCollection.Commands.Commands;
 using RuCollection.Commands.Configs;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,8 @@ namespace RuCollection.Commands
         public override void OnRegisteringCommands()
         {
             Commands.Add(new Betray());
+            Commands.Add(new DropItem());
+            Commands.Add(new DropRagdoll());
             Commands.Add(new Force());
             Commands.Add(new Hide());
             Commands.Add(new Item());

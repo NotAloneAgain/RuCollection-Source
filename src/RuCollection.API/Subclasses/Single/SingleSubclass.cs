@@ -50,5 +50,15 @@ namespace RuCollection.API.Subclasses.Single
 
             Destroy(ev.Player);
         }
+
+        protected override void OnEscaping(EscapingEventArgs ev)
+        {
+            if (Player != ev.Player || !ev.IsAllowed || KeepOnEscape)
+            {
+                return;
+            }
+
+            Destroy(ev.Player);
+        }
     }
 }

@@ -43,7 +43,7 @@ namespace RuCollection.API.Subclasses.Group
             },
             { 4, new(1)
             {
-                {ItemType.ArmorHeavy, 100 }
+                {ItemType.ArmorLight, 100 }
             }
             }
         });

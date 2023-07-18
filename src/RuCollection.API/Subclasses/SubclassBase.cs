@@ -29,6 +29,8 @@ namespace RuCollection.API.Subclasses
 
         public virtual Vector3 Size { get; } = Vector3.zero;
 
+        public virtual bool KeepOnEscape { get; } = false;
+
         public virtual void Init(Player player)
         {
             if (!_loaded)
@@ -96,19 +98,23 @@ namespace RuCollection.API.Subclasses
 
         public virtual void Subscribe()
         {
+            Exiled.Events.Handlers.Player.Escaping += OnEscaping;
             Exiled.Events.Handlers.Player.Left += OnPlayerLeft;
             Exiled.Events.Handlers.Player.Died += OnDied;
         }
 
         public virtual void Unsubscribe()
         {
-            Exiled.Events.Handlers.Player.Left -= OnPlayerLeft;
             Exiled.Events.Handlers.Player.Died -= OnDied;
+            Exiled.Events.Handlers.Player.Left -= OnPlayerLeft;
+            Exiled.Events.Handlers.Player.Escaping -= OnEscaping;
         }
 
         protected virtual void OnPlayerLeft(LeftEventArgs ev) => Deassign(ev.Player);
 
         protected virtual void OnDied(DiedEventArgs ev) => Deassign(ev.Player);
+
+        protected virtual void OnEscaping(EscapingEventArgs ev) => Deassign(ev.Player);
 
         protected void SetInfo(Player ply, bool status)
         {

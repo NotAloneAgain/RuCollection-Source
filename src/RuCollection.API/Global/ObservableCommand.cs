@@ -21,6 +21,11 @@ namespace RuCollection.API.Global
 
         public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
+            if (!base.Execute(arguments, sender, out response))
+            {
+                return false;
+            }
+
             Executor = Player.Get(sender);
 
             if (Executor == null)
@@ -31,7 +36,7 @@ namespace RuCollection.API.Global
 
             LastUsed.SetOrAdd(Executor, GetValue(), RewriteLast);
 
-            return base.Execute(arguments, sender, out response);
+            return true;
         }
 
         public abstract TObject GetValue();

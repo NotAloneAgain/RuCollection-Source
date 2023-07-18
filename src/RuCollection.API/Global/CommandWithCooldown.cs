@@ -9,6 +9,8 @@ namespace RuCollection.API.Global
     {
         public abstract short Cooldown { get; }
 
+        public sealed override bool RewriteLast { get; } = false;
+
         public override bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (!base.Execute(arguments, sender, out response))
@@ -16,7 +18,9 @@ namespace RuCollection.API.Global
                 return false;
             }
 
-            var time = Round.ElapsedTime.TotalSeconds - (LastUsed?[Executor] ?? 0);
+            var player = Executor;
+
+            var time = Mathf.RoundToInt((float)Round.ElapsedTime.TotalSeconds) - LastUsed[player];
 
             if (time >= Cooldown)
             {
@@ -24,9 +28,11 @@ namespace RuCollection.API.Global
                 return false;
             }
 
+            LastUsed[player] = GetValue();
+
             return true;
         }
 
-        public override int GetValue() => Mathf.RoundToInt((float) Round.ElapsedTime.TotalSeconds);
+        public override int GetValue() => Mathf.RoundToInt((float)Round.ElapsedTime.TotalSeconds);
     }
 }
