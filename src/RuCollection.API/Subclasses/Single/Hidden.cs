@@ -16,6 +16,8 @@ namespace RuCollection.API.Subclasses.Single
 
         public override string Message { get; } = "Вы - скрытный!\nПо команде .hide вы можете стать невидимым на 20 секунд. Перезарядка: 3 минуты.";
 
+        public override bool KeepOnEscape { get; } = true;
+
         public override Inventory Inventory { get; } = new Inventory(new(2)
         {
             { 0, new (1)

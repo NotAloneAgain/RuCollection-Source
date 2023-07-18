@@ -18,6 +18,8 @@ namespace RuCollection.API.Subclasses.Group
 
         public override string Message { get; } = "Вы - Профессиональный вор! Когда-то давно вы ограбили банк и попали сюда.\nВы имеете хороший стартовый набор, команду .steal и +2% к скорости.";
 
+        public override bool KeepOnEscape { get; } = true;
+
         public override Inventory Inventory { get; } = new Inventory(new(1)
         {
             { 0, new (1)

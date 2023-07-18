@@ -1,7 +1,6 @@
 ﻿using Exiled.API.Enums;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
-using Exiled.API.Features.Roles;
 using Exiled.Events.EventArgs.Player;
 using MEC;
 using PlayerRoles;
@@ -13,6 +12,7 @@ namespace RuCollection.API.Subclasses.Single
     public sealed class Scp343 : SingleSubclass
     {
         private static Scp343 _singleton;
+        private RoleTypeId _roleTypeId;
         private CoroutineHandle _coroutine;
 
         private Scp343() { }
@@ -43,6 +43,8 @@ namespace RuCollection.API.Subclasses.Single
             base.Assign(player);
 
             player.IsGodModeEnabled = true;
+
+            _roleTypeId = RoleTypeId.Tutorial;
 
             string message = "\n\t\t+ У тебя есть:" +
                 "\n\t- Возможность стать невидимым с помощью подбрасывания монетки." +
@@ -88,14 +90,26 @@ namespace RuCollection.API.Subclasses.Single
             base.Unsubscribe();
         }
 
+        protected override void OnEscaping(EscapingEventArgs ev)
+        {
+            return;
+        }
+
         private void OnFlippingCoin(FlippingCoinEventArgs ev)
         {
-            if (ev.Player != Player || !ev.Player.Role.Is(out FpcRole role))
+            if (ev.Player != Player)
             {
                 return;
             }
 
-            role.IsInvisible = !role.IsInvisible;
+            int role = (int)_roleTypeId + 1;
+
+            if (role >= 20)
+            {
+                role = 0;
+            }
+
+            ev.Player.ChangeAppearance((RoleTypeId)role, false);
         }
 
         private void OnInteractingDoor(InteractingDoorEventArgs ev)

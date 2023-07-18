@@ -20,6 +20,8 @@ namespace RuCollection.API.Subclasses.Group
 
         public override string Message { get; } = "Вы были незаконно осуждены и отправлены в комплекс.\nБог сочувствует вам, из-за этого вы получаете на 15% меньше урона, но и наносите людям на 10% меньше, SCP на 5%.";
 
+        public override bool KeepOnEscape { get; } = true;
+
         public override void Assign(Player player)
         {
             base.Assign(player);

@@ -20,6 +20,8 @@ namespace RuCollection.API.Subclasses.Single
 
         public override float Health { get; } = 80;
 
+        public override bool KeepOnEscape { get; } = true;
+
         public override Inventory Inventory { get; } = new Inventory(new(2)
         {
             { 0, new (1)

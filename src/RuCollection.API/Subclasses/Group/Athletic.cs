@@ -42,6 +42,8 @@ namespace RuCollection.API.Subclasses.Single
             },
         });
 
+        public override bool KeepOnEscape { get; } = true;
+
         public override void Assign(Player player)
         {
             base.Assign(player);

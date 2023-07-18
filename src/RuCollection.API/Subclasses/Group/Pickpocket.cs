@@ -30,5 +30,7 @@ namespace RuCollection.API.Subclasses.Group
             }
             }
         });
+
+        public override bool KeepOnEscape { get; } = true;
     }
 }
