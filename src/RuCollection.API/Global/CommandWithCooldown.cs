@@ -20,7 +20,7 @@ namespace RuCollection.API.Global
 
             var player = Executor;
 
-            var time = Mathf.RoundToInt((float)Round.ElapsedTime.TotalSeconds) - LastUsed[player];
+            var time = GetValue() + Cooldown - LastUsed[player];
 
             if (time >= Cooldown)
             {
