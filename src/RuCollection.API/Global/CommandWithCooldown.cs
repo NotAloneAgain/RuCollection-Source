@@ -20,9 +20,9 @@ namespace RuCollection.API.Global
 
             var player = Executor;
 
-            var time = GetValue() + Cooldown - LastUsed[player];
+            var time = LastUsed[player] + Cooldown - GetValue();
 
-            if (time >= Cooldown)
+            if (time > 0)
             {
                 response = $"Вам осталось ждать {time.GetSecondsString()} до следующей попытки.";
                 return false;

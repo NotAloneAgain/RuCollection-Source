@@ -34,7 +34,7 @@ namespace MiscPlugins.Handlers
                 = ev.IsAllowed || ev.Player.Items.Any(x => x.Is(out Keycard card) && HasFlagFast(card.Permissions, KeycardPermissions.Checkpoints) && HasFlagFast(card.Permissions, KeycardPermissions.ContainmentLevelTwo));
 
         public void OnUnlockingGenerator(UnlockingGeneratorEventArgs ev) => ev.IsAllowed
-                = ev.IsAllowed || ev.Player.Items.Any(x => x.Is(out Keycard card) && HasFlagFast(ev.Generator.KeycardPermissions, KeycardPermissions.ArmoryLevelTwo));
+                = ev.IsAllowed || ev.Player.Items.Any(x => x.Is(out Keycard card) && HasFlagFast(card.Permissions, KeycardPermissions.ArmoryLevelTwo));
 
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
